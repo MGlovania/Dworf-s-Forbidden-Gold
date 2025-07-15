@@ -7,6 +7,8 @@ public class BorrarProgreso : MonoBehaviour
 
     public static int puntoBorrar;
 
+    public GameObject sureBorrar;
+    public int puntoSureBorrar;
     void Start()
     {
         if (puntoBorrar >= 1)
@@ -24,8 +26,19 @@ public class BorrarProgreso : MonoBehaviour
     }
 
 
-   
 
+    public void SureBorrar()
+    {
+        if (puntoSureBorrar <= 0)
+        {
+            puntoSureBorrar = 1;
+            sureBorrar.SetActive(true);
+        }
+        else {
+            puntoSureBorrar = 0;
+            sureBorrar.SetActive(false);
+        }
+    }
     public void Borrar()
     {
         PlayerPrefs.DeleteAll();

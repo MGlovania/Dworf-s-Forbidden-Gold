@@ -37,152 +37,111 @@ public class Menus : MonoBehaviour
     public int puntoIglesia;
 
     public GameObject recuadroLaboratorio;
+    public GameObject recuadroLaboratorio2;
     public int puntoLaboratorio;
+    public GameObject botonMenuLaboratorio1;
+    public GameObject botonMenuLaboratorio2;
+    public GameObject pocionRGBBloq;
+    public GameObject pocionRGBPoner;
 
-    public GameObject recuadroAlquimistasSeleccionarConstruccion;
-    public int puntoAlquimistasSeleccionarConstruccion;
+
+    public GameObject recuadroDrillGlobal;
+    public GameObject recuadroDrill;
+    public GameObject recuadroDrill2;
+    public int puntoDrill;
+    public GameObject botonMenuDrill1;
+    public GameObject botonMenuDrill2;
+    public GameObject botonCambiarRoca;
+    public GameObject mostrarCambiarRoca;
+    public int puntoRecuadroMostrarCambiarRoca;
+    public Sprite gold;
+    public Sprite zafiro;
+    public int puntoPiedraGoldSeleccionada;
+    public int puntoPiedraZafiroSeleccionada;
 
     public GameObject recuadroAlquimistasSeleccionarPiedra;
     public int puntoAlquimistasSeleccionarPiedra;
 
-    public Image recuadroTruckLaboratorio;
-    public Image recuadroCasaLaboratorio;
-    public Image recuadroDepositoLaboratorio;
-    public Image recuadroMinerosLaboratorio;
-    public Image recuadroIglesiaLaboratorio;
-    public Image recuadroCannonLaboratorio;
-    public Image recuadroLaboratorioLaboratorio;
-    public Image recuadroDrillLaboratorio;
-    public Image recuadroObservatorioLaboratorio;
-    public Image recuadroDronesLaboratorio;
-    public Image recuadroCementerioLaboratorio;
-    public Image recuadroRocketSiloLaboratorio;
-    public Image recuadroExtremeLaboratorio;
-    public Sprite recuadroTruckLaboratorioDesSeleccionado;
-    public Sprite recuadroCasaLaboratorioDesSeleccionado;
-    public Sprite recuadroDepositoLaboratorioDesSeleccionado;
-    public Sprite recuadroMinerosLaboratorioDesSeleccionado;
-    public Sprite recuadroIglesiaLaboratorioDesSeleccionado;
-    public Sprite recuadroCannonLaboratorioDesSeleccionado;
-    public Sprite recuadroLaboratorioLaboratorioDesSeleccionado;
-    public Sprite recuadroDrillLaboratorioDesSeleccionado;
-    public Sprite recuadroObservatorioLaboratorioDesSeleccionado;
-    public Sprite recuadroDronesLaboratorioDesSeleccionado;
-    public Sprite recuadroCementerioLaboratorioDesSeleccionado;
-    public Sprite recuadroRocketSiloLaboratorioDesSeleccionado;
-    public Sprite recuadroExtremeLaboratorioDesSeleccionado;
-    public Sprite recuadroTruckLaboratorioSeleccionado;
-    public Sprite recuadroCasaLaboratorioSeleccionado;
-    public Sprite recuadroDepositoLaboratorioSeleccionado;
-    public Sprite recuadroMinerosLaboratorioSeleccionado;
-    public Sprite recuadroIglesiaLaboratorioSeleccionado;
-    public Sprite recuadroCannonLaboratorioSeleccionado;
-    public Sprite recuadroLaboratorioLaboratorioSeleccionado;
-    public Sprite recuadroDrillLaboratorioSeleccionado;
-    public Sprite recuadroObservatorioLaboratorioSeleccionado;
-    public Sprite recuadroDronesLaboratorioSeleccionado;
-    public Sprite recuadroCementerioLaboratorioSeleccionado;
-    public Sprite recuadroRocketSiloLaboratorioSeleccionado;
-    public Sprite recuadroExtremeLaboratorioSeleccionado;
-    public int puntoTruckLaboratorioSeleccionado;
-    public int puntoCasaLaboratorioSeleccionado;
-    public int puntoDepositoLaboratorioSeleccionado;
-    public int puntoMinerosLaboratorioSeleccionado;
-    public int puntoIglesiaLaboratorioSeleccionado;
-    public int puntoCannonLaboratorioSeleccionado;
-    public int puntoLaboratorioLaboratorioSeleccionado;
-    public int puntoDrillLaboratorioSeleccionado;
-    public int puntoObservatorioLaboratorioSeleccionado;
-    public int puntoDronesLaboratorioSeleccionado;
-    public int puntoCementerioLaboratorioSeleccionado;
-    public int puntoRocketSiloLaboratorioSeleccionado;
-    public int puntoExtremeLaboratorioSeleccionado;
 
+
+    public Image pocionDworf;
     public Image pocionHardness;
     public Image pocionRGB;
+    public Sprite pocionDworfDesSeleccionada;
     public Sprite pocionHardnessDesSeleccionada;
     public Sprite pocionRGBDesSeleccionada;
+    public Sprite pocionDworfSeleccionada;
     public Sprite pocionHardnessSeleccionada;
     public Sprite pocionRGBSeleccionada;
+    public int puntoDworfSeleccionada;
     public int puntoHardnessSeleccionada;
     public int puntoRGBSeleccionada;
 
     public GameObject recuadroObservatorio;
     public int puntoObservatorio;
 
+    public GameObject recuadroPark;
+    public int puntoPark;
+
+    public GameObject recuadroSilo;
+    public int puntoSilo;
+
+    public GameObject player;
+    public int puntoPrestigioDesSeleccionarPociones;
+
+
+    public GameObject menuInfo;
+    public GameObject menuInfoRecursos;
+    public GameObject menuInfoClicks;
+    public GameObject menuInfoUnemployed;
+    public GameObject menuInfoCollectors;
+    public GameObject menuInfoRangedMiners;
+    public GameObject menuInfoPowerDrills;
+    public GameObject menuInfoAlchemists;
+
+    public int puntoMenuInfo;
+
+    public GameObject menuOpciones;
+    public int puntoMenuOpciones;
+
+    public GameObject menuOpcionesIntro;
+    public int puntoMenuOpcionesIntro;
+
+    public GameObject prestigio;
+
+    public int puntoVolverAActivarBoton;
     void Start()
     {
-        puntoTruckLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoTruckLaboratorioSeleccionado");
-        puntoCasaLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoCasaLaboratorioSeleccionado");
-        puntoDepositoLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoDepositoLaboratorioSeleccionado");
-        puntoMinerosLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoMinerosLaboratorioSeleccionado");
-        puntoIglesiaLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoIglesiaLaboratorioSeleccionado");
-        puntoCannonLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoCannonLaboratorioSeleccionado");
-        puntoLaboratorioLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoLaboratorioLaboratorioSeleccionado");
-        puntoDrillLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoDrillLaboratorioSeleccionado");
-        puntoObservatorioLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoObservatorioLaboratorioSeleccionado");
-        puntoDronesLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoDronesLaboratorioSeleccionado");
-        puntoCementerioLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoCementerioLaboratorioSeleccionado");
-        puntoRocketSiloLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoRocketSiloLaboratorioSeleccionado");
-        puntoExtremeLaboratorioSeleccionado = PlayerPrefs.GetInt("PuntoExtremeLaboratorioSeleccionado");
+
         puntoObservatorio = PlayerPrefs.GetInt("PuntoObservatorio");
 
         puntoHardnessSeleccionada = PlayerPrefs.GetInt("PuntoHardnessSeleccionada");
         puntoRGBSeleccionada = PlayerPrefs.GetInt("PuntoRGBSeleccionada");
+        puntoDworfSeleccionada = PlayerPrefs.GetInt("PuntoDworfSeleccionada");
 
-        if (puntoTruckLaboratorioSeleccionado >= 1)
+        puntoPiedraGoldSeleccionada = PlayerPrefs.GetInt("PuntoPiedraGoldSeleccionada");
+        puntoPiedraZafiroSeleccionada = PlayerPrefs.GetInt("PuntoPiedraZafiroSeleccionada");
+        if (puntoPiedraGoldSeleccionada >= 1)
         {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioSeleccionado;
+            botonCambiarRoca.GetComponent<Image>().sprite = gold;
         }
-       else if (puntoDepositoLaboratorioSeleccionado >= 1)
+        if (puntoPiedraZafiroSeleccionada >= 1)
         {
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioSeleccionado;
+            botonCambiarRoca.GetComponent<Image>().sprite = zafiro;
         }
-        else if (puntoCasaLaboratorioSeleccionado >= 1)
+
+        if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraDesbloqRGBPotion >= 0)
         {
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioSeleccionado;
+            pocionRGBBloq.SetActive(false);
+            pocionRGBPoner.SetActive(true);
         }
-        else if (puntoMinerosLaboratorioSeleccionado >= 1)
+
+
+        if (puntoDworfSeleccionada >= 1)
         {
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioSeleccionado;
+            pocionDworf.GetComponent<Image>().sprite = pocionDworfSeleccionada;
         }
-        else if (puntoIglesiaLaboratorioSeleccionado >= 1)
-        {
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioSeleccionado;
-        }
-        else if (puntoCannonLaboratorioSeleccionado >= 1)
-        {
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioSeleccionado;
-        }
-        else if (puntoLaboratorioLaboratorioSeleccionado >= 1)
-        {
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioSeleccionado;
-        }
-        else if (puntoDrillLaboratorioSeleccionado >= 1)
-        {
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-        }
-        else if (puntoObservatorioLaboratorioSeleccionado >= 1)
-        {
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioSeleccionado;
-        }
-        else if (puntoDronesLaboratorioSeleccionado >= 1)
-        {
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioSeleccionado;
-        }
-        else if (puntoCementerioLaboratorioSeleccionado >= 1)
-        {
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioSeleccionado;
-        }
-        else if (puntoRocketSiloLaboratorioSeleccionado >= 1)
-        {
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioSeleccionado;
-        }
-        else if (puntoExtremeLaboratorioSeleccionado >= 1)
-        {
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioSeleccionado;
-        }
-        if (puntoHardnessSeleccionada >= 1)
+        else if (puntoHardnessSeleccionada >= 1)
         {
             pocionHardness.GetComponent<Image>().sprite = pocionHardnessSeleccionada;
         }
@@ -190,63 +149,202 @@ public class Menus : MonoBehaviour
         {
             pocionRGB.GetComponent<Image>().sprite = pocionRGBSeleccionada;
         }
+     
     }
+   
     private void Update()
     {
-        PlayerPrefs.SetInt("PuntoTruckLaboratorioSeleccionado", puntoTruckLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoCasaLaboratorioSeleccionado", puntoCasaLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoDepositoLaboratorioSeleccionado", puntoDepositoLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoMinerosLaboratorioSeleccionado", puntoMinerosLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PpuntoIglesiaLaboratorioSeleccionado", puntoIglesiaLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoCannonLaboratorioSeleccionado", puntoCannonLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PpuntoLaboratorioLaboratorioSeleccionado", puntoLaboratorioLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoDrillLaboratorioSeleccionado", puntoDrillLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoObservatorioLaboratorioSeleccionado", puntoObservatorioLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoDronesLaboratorioSeleccionado", puntoDronesLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoCementerioLaboratorioSeleccionado", puntoCementerioLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoRocketSiloLaboratorioSeleccionado", puntoRocketSiloLaboratorioSeleccionado);
-        PlayerPrefs.SetInt("PuntoExtremeLaboratorioSeleccionado", puntoExtremeLaboratorioSeleccionado);
+
         PlayerPrefs.SetInt("PuntoObservatorio", puntoObservatorio);
 
+
+        PlayerPrefs.SetInt("PuntoDworfSeleccionada", puntoDworfSeleccionada);
         PlayerPrefs.SetInt("PuntoHardnessSeleccionada", puntoHardnessSeleccionada);
         PlayerPrefs.SetInt("PuntoRGBSeleccionada", puntoRGBSeleccionada);
 
-     
+        PlayerPrefs.SetInt("PuntoPiedraGoldSeleccionada", puntoPiedraGoldSeleccionada);
+        PlayerPrefs.SetInt("PuntoPiedraZafiroSeleccionada", puntoPiedraZafiroSeleccionada);
+
+    }
+    public void MenuOpciones()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (puntoMenuOpciones <= 0)
+        {
+            menuOpciones.SetActive(true);
+            puntoMenuOpciones = 1;
+        }
+        else
+        {
+            menuOpciones.SetActive(false);
+            puntoMenuOpciones = 0;
+        }
+
+    }
+    public void MenuOpcionesIntro()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (puntoMenuOpcionesIntro <= 0)
+        {
+            menuOpcionesIntro.SetActive(true);
+            puntoMenuOpcionesIntro = 1;
+        }
+        else
+        {
+            menuOpcionesIntro.SetActive(false);
+            puntoMenuOpcionesIntro = 0;
+        }
+
+    }
+    public void MenuInfo()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (puntoMenuInfo <= 0)
+        {
+            menuInfo.SetActive(true);
+            puntoMenuInfo = 1;
+        }
+        else
+        {
+            menuInfo.SetActive(false);
+            puntoMenuInfo = 0;
+        }
+    }
+    public void MenuInfoRecursos()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        menuInfoRecursos.SetActive(true);
+        menuInfoClicks.SetActive(false);
+        menuInfoUnemployed.SetActive(false);
+        menuInfoCollectors.SetActive(false);
+        menuInfoRangedMiners.SetActive(false);
+        menuInfoPowerDrills.SetActive(false);
+        menuInfoAlchemists.SetActive(false);
+    }
+    public void MenuInfoClicks()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        menuInfoRecursos.SetActive(false);
+        menuInfoClicks.SetActive(true);
+        menuInfoUnemployed.SetActive(false);
+        menuInfoCollectors.SetActive(false);
+        menuInfoRangedMiners.SetActive(false);
+        menuInfoPowerDrills.SetActive(false);
+        menuInfoAlchemists.SetActive(false);
+    }
+    public void MenuInfoUnemployed()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        menuInfoRecursos.SetActive(false);
+        menuInfoClicks.SetActive(false);
+        menuInfoUnemployed.SetActive(true);
+        menuInfoCollectors.SetActive(false);
+        menuInfoRangedMiners.SetActive(false);
+        menuInfoPowerDrills.SetActive(false);
+        menuInfoAlchemists.SetActive(false);
+    }
+    public void MenuInfoCollectors()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        menuInfoRecursos.SetActive(false);
+        menuInfoClicks.SetActive(false);
+        menuInfoUnemployed.SetActive(false);
+        menuInfoCollectors.SetActive(true);
+        menuInfoRangedMiners.SetActive(false);
+        menuInfoPowerDrills.SetActive(false);
+        menuInfoAlchemists.SetActive(false);
+    }
+    public void MenuInfoMiners()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        menuInfoRecursos.SetActive(false);
+        menuInfoClicks.SetActive(false);
+        menuInfoUnemployed.SetActive(false);
+        menuInfoCollectors.SetActive(false);
+        menuInfoRangedMiners.SetActive(true);
+        menuInfoPowerDrills.SetActive(false);
+        menuInfoAlchemists.SetActive(false);
+    }
+    public void MenuInfoPowerDrills()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        menuInfoRecursos.SetActive(false);
+        menuInfoClicks.SetActive(false);
+        menuInfoUnemployed.SetActive(false);
+        menuInfoCollectors.SetActive(false);
+        menuInfoRangedMiners.SetActive(false);
+        menuInfoPowerDrills.SetActive(true);
+        menuInfoAlchemists.SetActive(false);
+    }
+    public void MenuInfoAlchemists()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        menuInfoRecursos.SetActive(false);
+        menuInfoClicks.SetActive(false);
+        menuInfoUnemployed.SetActive(false);
+        menuInfoCollectors.SetActive(false);
+        menuInfoRangedMiners.SetActive(false);
+        menuInfoPowerDrills.SetActive(false);
+        menuInfoAlchemists.SetActive(true);
+    }
+    public void ActualizarAlquimistas()
+    {
+        if (puntoDworfSeleccionada >= 1)
+        {
+            for (int i = 0; i < GetComponent<Recursos>().cantidadDworfsAlquimistas; i++)
+            {
+                GetComponent<Recursos>().valorDworfsFe /= GetComponent<Recursos>().buffoAlquimistasDworfs;
+            }
+        }
+        if (puntoHardnessSeleccionada >= 1)
+        {
+            for (int i = 0; i < GetComponent<Recursos>().cantidadDworfsAlquimistas; i++)
+            {
+                GetComponent<Recursos>().valorPiedra /= GetComponent<Recursos>().buffoAlquimistasHardness;
+            }
+        }
+
+
+    }
+    public void PocionDworf()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (puntoDworfSeleccionada <= 0)
+        {
+            for (int i = 0; i < GetComponent<Recursos>().cantidadDworfsAlquimistas; i++)
+            {
+                GetComponent<Recursos>().valorDworfsFe *= GetComponent<Recursos>().buffoAlquimistasDworfs;
+            }
+            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
+            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
+            pocionDworf.GetComponent<Image>().sprite = pocionDworfSeleccionada;
+            puntoDworfSeleccionada = 1;
+            puntoHardnessSeleccionada = 0;
+            puntoRGBSeleccionada = 0;
+
+        }
+        else
+        {
+            pocionDworf.GetComponent<Image>().sprite = pocionDworfDesSeleccionada;
+            puntoDworfSeleccionada = 0;
+        }
     }
     public void PocionHardness()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoHardnessSeleccionada <= 0)
         {
+            for (int i = 0; i < GetComponent<Recursos>().cantidadDworfsAlquimistas; i++)
+            {
+                GetComponent<Recursos>().valorPiedra *= GetComponent<Recursos>().buffoAlquimistasHardness;
+            }
+
             pocionHardness.GetComponent<Image>().sprite = pocionHardnessSeleccionada;
             pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
+            pocionDworf.GetComponent<Image>().sprite = pocionDworfDesSeleccionada;
+            puntoDworfSeleccionada = 0;
             puntoHardnessSeleccionada = 1;
-            puntoRGBSeleccionada = 0;       
+            puntoRGBSeleccionada = 0;
 
         }
         else
@@ -257,36 +355,17 @@ public class Menus : MonoBehaviour
     }
     public void PocionRGB()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoRGBSeleccionada <= 0)
         {
+            for (int i = 0; i < GetComponent<Recursos>().cantidadDworfsAlquimistas; i++)
+            {
+                GetComponent<Recursos>().valorZafiro *= GetComponent<Recursos>().buffoAlquimistasRGB;
+            }
             pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
             pocionRGB.GetComponent<Image>().sprite = pocionRGBSeleccionada;
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
+            pocionDworf.GetComponent<Image>().sprite = pocionDworfDesSeleccionada;
+            puntoDworfSeleccionada = 0;
             puntoHardnessSeleccionada = 0;
             puntoRGBSeleccionada = 1;
         }
@@ -296,563 +375,16 @@ public class Menus : MonoBehaviour
             puntoRGBSeleccionada = 0;
         }
     }
-    public void SelectTruck()
-    {
-        if (puntoTruckLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 1;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            puntoTruckLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectCasa()
-    {
-        if (puntoCasaLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 1;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            puntoCasaLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectDeposito()
-    {
-        if (puntoDepositoLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 1;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            puntoDepositoLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectMineros()
-    {
-        if (puntoMinerosLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 1;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            puntoMinerosLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectIglesia()
-    {
-        if (puntoIglesiaLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 1;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectCannon()
-    {
-        if (puntoCannonLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 1;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            puntoCannonLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectLaboratorio()
-    {
-        if (puntoLaboratorioLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 1;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectDrill()
-    {
-        if (puntoDrillLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 1;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            puntoDrillLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectObservatorio()
-    {
-        if (puntoObservatorioLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 1;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectDrones()
-    {
-        if (puntoDronesLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 1;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            puntoDronesLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectCementerio()
-    {
-        if (puntoCementerioLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 1;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            puntoCementerioLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectRocketSilo()
-    {
-        if (puntoRocketSiloLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 1;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-        else
-        {
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-        }
-    }
-    public void SelectExtreme()
-    {
-        if (puntoExtremeLaboratorioSeleccionado <= 0)
-        {
-            recuadroTruckLaboratorio.GetComponent<Image>().sprite = recuadroTruckLaboratorioDesSeleccionado;
-            recuadroCasaLaboratorio.GetComponent<Image>().sprite = recuadroCasaLaboratorioDesSeleccionado;
-            recuadroMinerosLaboratorio.GetComponent<Image>().sprite = recuadroMinerosLaboratorioDesSeleccionado;
-            recuadroIglesiaLaboratorio.GetComponent<Image>().sprite = recuadroIglesiaLaboratorioDesSeleccionado;
-            recuadroCannonLaboratorio.GetComponent<Image>().sprite = recuadroCannonLaboratorioDesSeleccionado;
-            recuadroLaboratorioLaboratorio.GetComponent<Image>().sprite = recuadroLaboratorioLaboratorioDesSeleccionado;
-            recuadroDrillLaboratorio.GetComponent<Image>().sprite = recuadroDrillLaboratorioDesSeleccionado;
-            recuadroObservatorioLaboratorio.GetComponent<Image>().sprite = recuadroObservatorioLaboratorioDesSeleccionado;
-            recuadroDronesLaboratorio.GetComponent<Image>().sprite = recuadroDronesLaboratorioDesSeleccionado;
-            recuadroCementerioLaboratorio.GetComponent<Image>().sprite = recuadroCementerioLaboratorioDesSeleccionado;
-            recuadroRocketSiloLaboratorio.GetComponent<Image>().sprite = recuadroRocketSiloLaboratorioDesSeleccionado;
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioSeleccionado;
-            recuadroDepositoLaboratorio.GetComponent<Image>().sprite = recuadroDepositoLaboratorioDesSeleccionado;
-            pocionHardness.GetComponent<Image>().sprite = pocionHardnessDesSeleccionada;
-            pocionRGB.GetComponent<Image>().sprite = pocionRGBDesSeleccionada;
-            puntoHardnessSeleccionada = 0;
-            puntoRGBSeleccionada = 0;
-            puntoDepositoLaboratorioSeleccionado = 0;
-            puntoTruckLaboratorioSeleccionado = 0;
-            puntoCasaLaboratorioSeleccionado = 0;
-            puntoMinerosLaboratorioSeleccionado = 0;
-            puntoIglesiaLaboratorioSeleccionado = 0;
-            puntoCannonLaboratorioSeleccionado = 0;
-            puntoLaboratorioLaboratorioSeleccionado = 0;
-            puntoDrillLaboratorioSeleccionado = 0;
-            puntoObservatorioLaboratorioSeleccionado = 0;
-            puntoDronesLaboratorioSeleccionado = 0;
-            puntoCementerioLaboratorioSeleccionado = 0;
-            puntoRocketSiloLaboratorioSeleccionado = 0;
-            puntoExtremeLaboratorioSeleccionado = 1;
-        }
-        else
-        {
-            recuadroExtremeLaboratorio.GetComponent<Image>().sprite = recuadroExtremeLaboratorioDesSeleccionado;
-            puntoExtremeLaboratorioSeleccionado = 0;
-        }
-    }
 
 
-    public void RecuadroLaboratorioConstruccion()
-    {
-        if (puntoAlquimistasSeleccionarConstruccion <= 0)
-        {         
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(true);
-            recuadroAlquimistasSeleccionarPiedra.SetActive(false);
-            puntoAlquimistasSeleccionarConstruccion = 1;
-            puntoAlquimistasSeleccionarPiedra = 0;
-        }
-        else
-        {
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
-            puntoAlquimistasSeleccionarConstruccion = 0;
-        }
-    }
+
+
     public void RecuadroLaboratorioPiedra()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoAlquimistasSeleccionarPiedra <= 0)
         {
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(true);
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 1;
         }
         else
@@ -863,6 +395,7 @@ public class Menus : MonoBehaviour
     }
     public void Laboratorio()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoLaboratorio <= 0)
         {
             recuadroObelisco1.SetActive(false);
@@ -879,12 +412,17 @@ public class Menus : MonoBehaviour
             recuadroCasa3.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(true);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 1;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 0;
@@ -894,19 +432,36 @@ public class Menus : MonoBehaviour
             puntoCasa1 = 0;
             puntoDeposito = 0;
             puntoMiners = 0;
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraDesbloqRGBPotion >= 0)
+            {
+                botonMenuLaboratorio1.SetActive(true);
+                botonMenuLaboratorio2.SetActive(true);
+            }
         }
         else
         {
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroLaboratorio.SetActive(false);
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
         }
+    }
+    public void BotonLaboratorio1()
+    {
+        recuadroLaboratorio.SetActive(true);
+        recuadroLaboratorio2.SetActive(false);
+    }
+    public void BotonLaboratorio2()
+    {
+        recuadroLaboratorio.SetActive(false);
+        recuadroLaboratorio2.SetActive(true);
     }
     public void Succion()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoSuccion <= 0)
         {
             recuadroObelisco1.SetActive(false);
@@ -923,12 +478,20 @@ public class Menus : MonoBehaviour
             recuadroCasa3.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);;
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 0;
@@ -947,6 +510,7 @@ public class Menus : MonoBehaviour
     }
     public void Deposito()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Intro>().puntoTruckEnDepositoIntro >= 1)
         {
             if (puntoDeposito <= 0)
@@ -965,12 +529,20 @@ public class Menus : MonoBehaviour
                 recuadroCasa3.SetActive(false);
                 recuadroIglesia.SetActive(false);
                 recuadroLaboratorio.SetActive(false);
-                recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
                 recuadroAlquimistasSeleccionarPiedra.SetActive(false);
                 recuadroObservatorio.SetActive(false);
+                recuadroPark.SetActive(false);
+                recuadroSilo.SetActive(false);
+                recuadroDrillGlobal.SetActive(false);
+                botonMenuLaboratorio1.SetActive(false);
+                botonMenuLaboratorio2.SetActive(false);
+                recuadroLaboratorio2.SetActive(false);
+                puntoRecuadroMostrarCambiarRoca = 0;
+                puntoSilo = 0;
+                puntoPark = 0;
+                puntoDrill = 0;
                 puntoObservatorio = 0;
                 puntoLaboratorio = 0;
-                puntoAlquimistasSeleccionarConstruccion = 0;
                 puntoAlquimistasSeleccionarPiedra = 0;
                 puntoIglesia = 0;
                 puntoCasa2 = 0;
@@ -991,6 +563,7 @@ public class Menus : MonoBehaviour
     }
     public void Miners()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoMiners <= 0)
         {
             recuadroObelisco1.SetActive(false);
@@ -1007,12 +580,20 @@ public class Menus : MonoBehaviour
             recuadroCasa3.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 0;
@@ -1031,6 +612,7 @@ public class Menus : MonoBehaviour
     }
     public void Truck()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoTruck <= 0)
         {
             recuadroObelisco1.SetActive(false);
@@ -1047,12 +629,20 @@ public class Menus : MonoBehaviour
             recuadroCasa3.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 0;
@@ -1071,6 +661,7 @@ public class Menus : MonoBehaviour
     }
     public void Casa1()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoCasa1 <= 0)
         {
             recuadroCasa1.SetActive(true);
@@ -1118,12 +709,20 @@ public class Menus : MonoBehaviour
             recuadroCasa3.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroDrillGlobal.SetActive(false); 
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 0;
@@ -1142,6 +741,7 @@ public class Menus : MonoBehaviour
     }
     public void Altar1()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoCasa1 <= 0)
         {
             recuadroObelisco1.SetActive(true);
@@ -1157,12 +757,20 @@ public class Menus : MonoBehaviour
             recuadroCasa3.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 0;
@@ -1181,6 +789,7 @@ public class Menus : MonoBehaviour
     }
     public void Casa2()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoCasa2 <= 0)
         {
             recuadroCasa2.SetActive(true);
@@ -1228,12 +837,20 @@ public class Menus : MonoBehaviour
             recuadroCasa1.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            mostrarCambiarRoca.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 1;
@@ -1252,6 +869,7 @@ public class Menus : MonoBehaviour
     }
     public void Altar2()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoCasa2 <= 0)
         {
             recuadroObelisco1.SetActive(false);
@@ -1267,12 +885,20 @@ public class Menus : MonoBehaviour
             recuadroCasa3.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 1;
@@ -1291,6 +917,7 @@ public class Menus : MonoBehaviour
     }
     public void Casa3()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoCasa3 <= 0)
         {
             recuadroCasa3.SetActive(true);
@@ -1338,12 +965,20 @@ public class Menus : MonoBehaviour
             recuadroCasa2.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 0;
@@ -1362,6 +997,7 @@ public class Menus : MonoBehaviour
     }
     public void Altar3()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoCasa3 <= 0)
         {
             recuadroObelisco1.SetActive(false);
@@ -1377,12 +1013,20 @@ public class Menus : MonoBehaviour
             recuadroCasa3.SetActive(false);
             recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 0;
@@ -1401,6 +1045,7 @@ public class Menus : MonoBehaviour
     }
     public void Iglesia()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoIglesia <= 0)
         {
             recuadroObelisco1.SetActive(false);
@@ -1410,18 +1055,26 @@ public class Menus : MonoBehaviour
             recuadroDepositoTutorialQuitar.SetActive(false);
             recuadroMiners.SetActive(false);
             recuadroSuccion.SetActive(false);
-            recuadroObelisco2.SetActive(true);
+            recuadroObelisco2.SetActive(false);
             recuadroCasa2.SetActive(false);
             recuadroObelisco3.SetActive(false);
             recuadroCasa3.SetActive(false);
             recuadroIglesia.SetActive(true);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 0;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 1;
             puntoCasa2 = 0;
@@ -1441,6 +1094,7 @@ public class Menus : MonoBehaviour
 
     public void Observatorio()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoObservatorio <= 0)
         {
             recuadroObelisco1.SetActive(false);
@@ -1454,14 +1108,22 @@ public class Menus : MonoBehaviour
             recuadroCasa2.SetActive(false);
             recuadroObelisco3.SetActive(false);
             recuadroCasa3.SetActive(false);
-            recuadroIglesia.SetActive(true);
+            recuadroIglesia.SetActive(false);
             recuadroLaboratorio.SetActive(false);
-            recuadroAlquimistasSeleccionarConstruccion.SetActive(false);
             recuadroAlquimistasSeleccionarPiedra.SetActive(false);
             recuadroObservatorio.SetActive(true);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 0;
             puntoObservatorio = 1;
             puntoLaboratorio = 0;
-            puntoAlquimistasSeleccionarConstruccion = 0;
             puntoAlquimistasSeleccionarPiedra = 0;
             puntoIglesia = 0;
             puntoCasa2 = 0;
@@ -1476,6 +1138,225 @@ public class Menus : MonoBehaviour
         {
             recuadroObservatorio.SetActive(false);
             puntoObservatorio = 0;
+        }
+    }
+    public void Drill()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (puntoDrill <= 0)
+        {
+            recuadroObelisco1.SetActive(false);
+            recuadroCasa1.SetActive(false);
+            recuadroDeposito.SetActive(false);
+            recuadroTruck.SetActive(false);
+            recuadroDepositoTutorialQuitar.SetActive(false);
+            recuadroMiners.SetActive(false);
+            recuadroSuccion.SetActive(false);
+            recuadroObelisco2.SetActive(false);
+            recuadroCasa2.SetActive(false);
+            recuadroObelisco3.SetActive(false);
+            recuadroCasa3.SetActive(false);
+            recuadroIglesia.SetActive(false);
+            recuadroLaboratorio.SetActive(false);
+            recuadroAlquimistasSeleccionarPiedra.SetActive(false);
+            recuadroObservatorio.SetActive(false);
+            recuadroDrillGlobal.SetActive(true);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoSilo = 0;
+            puntoPark = 0;
+            puntoDrill = 1;
+            puntoObservatorio = 0;
+            puntoLaboratorio = 0;
+            puntoAlquimistasSeleccionarPiedra = 0;
+            puntoIglesia = 0;
+            puntoCasa2 = 0;
+            puntoCasa3 = 0;
+            puntoSuccion = 0;
+            puntoMiners = 0;
+            puntoDeposito = 0;
+            puntoTruck = 0;
+            puntoCasa1 = 0;
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraDesbloqZafiro >= 1)
+            {
+                botonMenuDrill1.SetActive(true);
+                botonMenuDrill2.SetActive(true);
+                botonCambiarRoca.SetActive(true);
+            }
+        }
+        else
+        {
+            recuadroDrillGlobal.SetActive(false);
+            puntoDrill = 0;
+        }
+    }
+    public void RecuadroCambiarRoca()
+    {
+        if (puntoRecuadroMostrarCambiarRoca <= 0)
+        {
+            puntoRecuadroMostrarCambiarRoca = 1;
+            mostrarCambiarRoca.SetActive(true);
+        }
+        else
+        {
+            mostrarCambiarRoca.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+        }
+       
+    }
+    //al cambiar a que tipo de piedra minan los drills, se llama a estas funciones para destruirlos, instanciar nuevos, y tiene un cd de 2s asi le da tiempo al juego a destruir todos los drills y que no interfiera si se llaman varias veces las funciones en poco tiempo
+    public void CambiarAOro()
+    {
+        if (puntoPiedraGoldSeleccionada <= 0 && puntoVolverAActivarBoton <= 0 && GetComponent<Recursos>().cantidadDrillsEnPantalla == GetComponent<Recursos>().cantidadDrills || puntoPiedraGoldSeleccionada <= 0 && puntoVolverAActivarBoton <= 0 && GetComponent<Recursos>().cantidadDrills == 0)
+        {
+            botonCambiarRoca.GetComponent<Image>().sprite = gold;
+            puntoPiedraGoldSeleccionada = 1;
+            puntoPiedraZafiroSeleccionada = 0;
+            puntoVolverAActivarBoton = 1;
+            GetComponent<Recursos>().cantidadDrillsEnPantalla = 0;
+            GetComponent<Recursos>().puntoDestruirDrill = 1;
+            Invoke(nameof(QuitarPuntoDestruirDrills2), 2f);
+            Invoke(nameof(ActivarBoton), 5f);
+        }
+       
+    }
+    public void CambiarAZafiro()
+    {
+        if (puntoPiedraZafiroSeleccionada <= 0 && puntoVolverAActivarBoton <= 0 && GetComponent<Recursos>().cantidadDrillsEnPantalla == GetComponent<Recursos>().cantidadDrills || puntoPiedraZafiroSeleccionada <= 0 && puntoVolverAActivarBoton <= 0 && GetComponent<Recursos>().cantidadDrills == 0)
+        {
+            botonCambiarRoca.GetComponent<Image>().sprite = zafiro;
+            puntoPiedraGoldSeleccionada = 0;
+            puntoPiedraZafiroSeleccionada = 1;
+            puntoVolverAActivarBoton = 1;
+            GetComponent<Recursos>().cantidadDrillsEnPantalla = 0;
+            GetComponent<Recursos>().puntoDestruirDrill = 1;
+            Invoke(nameof(QuitarPuntoDestruirDrills), 2f);
+            Invoke(nameof(ActivarBoton), 5f);
+        }
+       
+    }
+   
+    void QuitarPuntoDestruirDrills()
+    {
+        GetComponent<Recursos>().puntoDestruirDrill = 0;
+        GetComponent<Recursos>().SpawnDrillsZafiro();
+    }
+    void QuitarPuntoDestruirDrills2()
+    {
+        GetComponent<Recursos>().puntoDestruirDrill = 0;
+        GetComponent<Recursos>().SpawnDrills();
+    }
+    void ActivarBoton()
+    {
+        puntoVolverAActivarBoton = 0;
+    }
+    public void BotonDrill1()
+    {
+        recuadroDrill.SetActive(true);
+        recuadroDrill2.SetActive(false);
+    }
+    public void BotonDrill2()
+    {
+        recuadroDrill.SetActive(false);
+        recuadroDrill2.SetActive(true);
+    }
+    public void Park()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (puntoPark <= 0)
+        {
+            recuadroObelisco1.SetActive(false);
+            recuadroCasa1.SetActive(false);
+            recuadroDeposito.SetActive(false);
+            recuadroTruck.SetActive(false);
+            recuadroDepositoTutorialQuitar.SetActive(false);
+            recuadroMiners.SetActive(false);
+            recuadroSuccion.SetActive(false);
+            recuadroObelisco2.SetActive(false);
+            recuadroCasa2.SetActive(false);
+            recuadroObelisco3.SetActive(false);
+            recuadroCasa3.SetActive(false);
+            recuadroIglesia.SetActive(false);
+            recuadroLaboratorio.SetActive(false);
+            recuadroAlquimistasSeleccionarPiedra.SetActive(false);
+            recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(true);
+            recuadroSilo.SetActive(false);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 0;
+            puntoPark = 1;
+            puntoDrill = 0;
+            puntoObservatorio = 0;
+            puntoLaboratorio = 0;
+            puntoAlquimistasSeleccionarPiedra = 0;
+            puntoIglesia = 0;
+            puntoCasa2 = 0;
+            puntoCasa3 = 0;
+            puntoSuccion = 0;
+            puntoMiners = 0;
+            puntoDeposito = 0;
+            puntoTruck = 0;
+            puntoCasa1 = 0;
+        }
+        else
+        {
+            recuadroPark.SetActive(false);
+            puntoPark = 0;
+        }
+    }
+    public void Silo()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (puntoSilo <= 0)
+        {
+            recuadroObelisco1.SetActive(false);
+            recuadroCasa1.SetActive(false);
+            recuadroDeposito.SetActive(false);
+            recuadroTruck.SetActive(false);
+            recuadroDepositoTutorialQuitar.SetActive(false);
+            recuadroMiners.SetActive(false);
+            recuadroSuccion.SetActive(false);
+            recuadroObelisco2.SetActive(false);
+            recuadroCasa2.SetActive(false);
+            recuadroObelisco3.SetActive(false);
+            recuadroCasa3.SetActive(false);
+            recuadroIglesia.SetActive(true);
+            recuadroLaboratorio.SetActive(false);
+            recuadroAlquimistasSeleccionarPiedra.SetActive(false);
+            recuadroObservatorio.SetActive(false);
+            recuadroPark.SetActive(false);
+            recuadroSilo.SetActive(true);
+            recuadroDrillGlobal.SetActive(false);
+            botonMenuLaboratorio1.SetActive(false);
+            botonMenuLaboratorio2.SetActive(false);
+            recuadroLaboratorio2.SetActive(false);
+            puntoRecuadroMostrarCambiarRoca = 0;
+            puntoSilo = 1;
+            puntoPark = 0;
+            puntoDrill = 0;
+            puntoObservatorio = 0;
+            puntoLaboratorio = 0;
+            puntoAlquimistasSeleccionarPiedra = 0;
+            puntoIglesia = 0;
+            puntoCasa2 = 0;
+            puntoCasa3 = 0;
+            puntoSuccion = 0;
+            puntoMiners = 0;
+            puntoDeposito = 0;
+            puntoTruck = 0;
+            puntoCasa1 = 0;
+        }
+        else
+        {
+            recuadroSilo.SetActive(false);
+            puntoSilo = 0;
         }
     }
 

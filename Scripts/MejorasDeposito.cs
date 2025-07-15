@@ -8,6 +8,10 @@ public class MejorasDeposito : MonoBehaviour
     public TMP_Text costeOroMejoraMasSpeedText;
     public TMP_Text costeOroMejoraMasCapacidadText;
 
+    public TMP_Text nivelOroMejoraMasCollectorsText;
+    public TMP_Text nivelOroMejoraMasSpeedText;
+    public TMP_Text nivelOroMejoraMasCapacidadText;
+
     public double costeOroMejoraMasCollectors;
     public int nivelMejoraMasCollectors;
 
@@ -22,6 +26,8 @@ public class MejorasDeposito : MonoBehaviour
 
 
     public GameObject particulasMejora;
+
+    public GameObject prestigio;
     void Start()
     {
         costeOroMejoraMasCollectors = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasCollectors", "0"));
@@ -34,6 +40,17 @@ public class MejorasDeposito : MonoBehaviour
     }
     void Verif()
     {
+        nivelOroMejoraMasCollectorsText.text = "(" + nivelMejoraMasCollectors.ToString("F0") + ")";
+        nivelOroMejoraMasCapacidadText.text = "(" + nivelMejoraMasCapacidad.ToString("F0") + ")";
+        if (nivelMejoraMasVelocidad >= 15)
+        {
+            nivelOroMejoraMasSpeedText.text = "(Max)";
+        }
+        else
+        {
+            nivelOroMejoraMasSpeedText.text = "(" + nivelMejoraMasVelocidad.ToString("F0") + ")";
+        }
+
         Invoke(nameof(Verif), 0.2f);
         PlayerPrefs.SetString("CosteOroMejoraMasCollectors", costeOroMejoraMasCollectors.ToString());
         PlayerPrefs.SetInt("NivelMejoraMasCollectors", nivelMejoraMasCollectors);
@@ -81,56 +98,74 @@ public class MejorasDeposito : MonoBehaviour
 
     public void MejoraMasCollectors()
     {
-        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasCollectors && nivelMejoraMasCollectors < 20)
+        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasCollectors && nivelMejoraMasCollectors < 20 && GetComponent<Recursos>().cantidadDworfsSinEmpleo >= 1)
         {
-           
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-6.9f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasCollectors;
-            GetComponent<Recursos>().cantidadDworfsSinEmpleo -= 1;
-            GetComponent<Recursos>().cantidadDworfsCollectors += 1;
             if (costeOroMejoraMasCollectors == 0)
             {
-                costeOroMejoraMasCollectors = 50;
+                costeOroMejoraMasCollectors = 20;
             }
             else
             {
                 costeOroMejoraMasCollectors *= 3;
             }
-        
-            nivelMejoraMasCollectors += 1;
-            GameObject obj = GameObject.FindGameObjectWithTag("Aldeano");
-            //GameObject obj = GameObject.FindFirstObjectByType<Aldeano>().gameObject;
-            if (obj != null)
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
             {
-                ObjectPool.ReturnObjectToPool(obj);
+                GetComponent<Recursos>().dañoClick /= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
             }
+            if (GetComponent<Recursos>().cantidadDworfsSinEmpleoAlmacenados >= 1)
+            {
+                GetComponent<Recursos>().cantidadDworfsSinEmpleoAlmacenados -= 1;
+            }          
+            else
+            {
+                GameObject obj = GameObject.FindGameObjectWithTag("Aldeano");
+                if (obj != null)
+                {
+                    ObjectPool.ReturnObjectToPool(obj);
+                }
+                GetComponent<Recursos>().cantidadDworfsSinEmpleo -= 1;
+            }
+            GetComponent<Recursos>().cantidadDworfsCollectors += 1;
+            GetComponent<Deposito>().MandarCollectors();
+            nivelMejoraMasCollectors += 1;
+         
         }
     }
     public void MejoraMasVelocidad()
     {
-        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasVelocidad && nivelMejoraMasVelocidad < 20)
+        AudioManager.instance.PlaySFX("Click");
+        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasVelocidad && nivelMejoraMasVelocidad < 10)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-6.9f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasVelocidad;
-            GetComponent<Recursos>().speedCollectors *= 1.1f;
-            GetComponent<Recursos>().speedCollectorsRecolectar /= 1.1f;
-            if (nivelMejoraMasVelocidad >= 10)
+            GetComponent<Recursos>().speedCollectors *= 1.15f;
+            GetComponent<Recursos>().speedCollectorsRecolectar /= 1.15f;
+            if (nivelMejoraMasVelocidad >= 6)
             {
-                costeOroMejoraMasVelocidad *= 5f;
+                costeOroMejoraMasVelocidad *= 2.8f;
             }
             else
             {
-                costeOroMejoraMasVelocidad *= 2f;
+                costeOroMejoraMasVelocidad *= 1.8f;
             }
             nivelMejoraMasVelocidad += 1;
         }
     }
     public void MejoraMasCapacidad()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasCapacidad)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-6.9f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasCapacidad;
-            GetComponent<Recursos>().cargoMaxCollectors *= 1.2f;
+            GetComponent<Recursos>().cargoMaxCollectors *= 1.25f;
 
-            costeOroMejoraMasCapacidad *= 2.25f;
+            costeOroMejoraMasCapacidad *= 2f;
             nivelMejoraMasCapacidad += 1;
         }
     }

@@ -13,6 +13,7 @@ public class Observatorio : MonoBehaviour
     }
     public void RecuadroPrestigio()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (puntoRecuadroPrestigio <= 0)
         {
             puntoRecuadroPrestigio = 1;

@@ -11,12 +11,12 @@ public class Deposito : MonoBehaviour
     public int cantidadAMandarCollectos;
     void Start()
     {
-        Invoke(nameof(Verif), 0.2f);
+        Invoke(nameof(Verif), 0.25f);
     }
 
     void Verif()
     {
-        Invoke(nameof(Verif), 0.2f);
+        Invoke(nameof(Verif), 0.25f);
         if (puntoCamionColision >= 1 && GetComponent<Recursos>().cantidadDworfsCollectors >= 1)
         {
             puntoCamionColision = 0;
@@ -24,14 +24,16 @@ public class Deposito : MonoBehaviour
         }
 
     }
-    void MandarCollectors()
+    public void MandarCollectors()
     {
         if (cantidadAMandarCollectos < GetComponent<Recursos>().cantidadDworfsCollectors)
         {
-            cantidadAMandarCollectos += 1;
-            Invoke(nameof(MandarCollectors), 0.2f);
             ObjectPool.SpawnObject(prefabCollectors, deposito.transform.position, Quaternion.identity);
+            cantidadAMandarCollectos += 1;
+            Invoke(nameof(MandarCollectors), 0.25f);
+          
         }
+       
     }
 
 }

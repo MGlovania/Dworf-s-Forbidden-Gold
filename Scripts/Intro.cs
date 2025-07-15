@@ -39,6 +39,12 @@ public class Intro : MonoBehaviour
     public GameObject recuadroTutorial4;
 
     public int puntoDemoPlayed;
+
+    public GameObject botonStart;
+    public GameObject botonOpciones;
+    public GameObject fugaz;
+
+    public GameObject opcionesQuitar;
     void Start()
     {
         
@@ -56,10 +62,9 @@ public class Intro : MonoBehaviour
             canvasMain.SetActive(false);
             canvasWorldMain.SetActive(false);
             main.SetActive(false);
-            Invoke(nameof(DwarfExclamacionIntro), 2.5f);
             sueloIntroQuitar.enabled = false;
-            Invoke(nameof(Verif), 0.25f);
-            Invoke(nameof(QuitarCarga), 1f);
+            botonStart.SetActive(true);
+            botonOpciones.SetActive(true);
         }
         else
         {
@@ -77,10 +82,21 @@ public class Intro : MonoBehaviour
             canvasWorldMain.SetActive(true);
             main.SetActive(true);
             carga.SetActive(false);
+         
         }
 
      
       
+    }
+    public void Empezar()
+    {
+        opcionesQuitar.SetActive(false);
+        Invoke(nameof(DwarfExclamacionIntro), 2.5f);
+        Invoke(nameof(Verif), 0.25f);
+        Invoke(nameof(QuitarCarga), 1f);
+        botonStart.SetActive(false);
+        botonOpciones.SetActive(false);
+        fugaz.SetActive(true);
     }
     void Verif()
     {

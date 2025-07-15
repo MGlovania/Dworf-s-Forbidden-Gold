@@ -10,6 +10,9 @@ public class Construir : MonoBehaviour
     public TMP_Text costeGoldCatedralText;
     public TMP_Text costeGoldLaboratorioText;
     public TMP_Text costeGoldObservatorioText;
+    public TMP_Text costeGoldDrillText;
+    public TMP_Text costeGoldRocketText;
+    public TMP_Text costeZafiroRocketText;
 
     public GameObject casa2;
     public GameObject hoverCasa2;
@@ -53,17 +56,37 @@ public class Construir : MonoBehaviour
     public int puntoObservatorioCosntruida;
     public double costeGoldObservatorio;
 
+    public GameObject drills;
+    public GameObject iconoConstruirDrills;
+    public GameObject hoverDrills;
+    public int puntoDrillsCosntruida;
+    public double costeGoldDrills;
+
+    public GameObject rocket;
+    public GameObject iconoConstruirRocket;
+    public GameObject hoverRocket;
+    public int puntoRocketCosntruida;
+    public double costeGoldRocket;
+    public double costeZafiroRocket;
+    public GameObject demoEnds;
 
 
     public GameObject particulasConstruir;
+
+    public GameObject prefabAldeano;
+
+    public GameObject prestigio;
     void Start()
     {
-        costeGoldCasa2 = double.Parse(PlayerPrefs.GetString("CosteGoldCasa2", "500"));
-        costeGoldCasa3 = double.Parse(PlayerPrefs.GetString("CosteGoldCasa2", "4000"));
-        costeGoldCasaMineros = double.Parse(PlayerPrefs.GetString("CosteGoldCasaMineros", "50"));
-        costeGoldCatedral = double.Parse(PlayerPrefs.GetString("CosteGoldCatedral", "125"));
-        costeGoldLaboratorio = double.Parse(PlayerPrefs.GetString("CosteGoldLaboratorio", "75"));
+        costeGoldCasa2 = double.Parse(PlayerPrefs.GetString("CosteGoldCasa2", "300"));
+        costeGoldCasa3 = double.Parse(PlayerPrefs.GetString("CosteGoldCasa3", "2500"));
+        costeGoldCasaMineros = double.Parse(PlayerPrefs.GetString("CosteGoldCasaMineros", "30"));
+        costeGoldCatedral = double.Parse(PlayerPrefs.GetString("CosteGoldCatedral", "75"));
+        costeGoldLaboratorio = double.Parse(PlayerPrefs.GetString("CosteGoldLaboratorio", "100"));
         costeGoldObservatorio = double.Parse(PlayerPrefs.GetString("CosteGoldObservatorio", "1000"));
+        costeGoldDrills = double.Parse(PlayerPrefs.GetString("CosteGoldDrills", "2500"));
+        costeGoldRocket = double.Parse(PlayerPrefs.GetString("CosteGoldRocket", "10000"));
+        costeZafiroRocket = double.Parse(PlayerPrefs.GetString("CosteZafiroRocket", "250"));
         puntoCasaMinerosConstruida = PlayerPrefs.GetInt("PuntoCasaMinerosConstruida");
         puntoCasa2Cosntruida = PlayerPrefs.GetInt("PuntoCasa2Cosntruida");
         puntoCasa3Cosntruida = PlayerPrefs.GetInt("PuntoCasa3Cosntruida");
@@ -71,6 +94,8 @@ public class Construir : MonoBehaviour
         puntoCatedralCosntruida = PlayerPrefs.GetInt("PuntoCatedralCosntruida");
         puntoLaboratorioCosntruida = PlayerPrefs.GetInt("PuntoLaboratorioCosntruida");
         puntoObservatorioCosntruida = PlayerPrefs.GetInt("PuntoObservatorioCosntruida");
+        puntoDrillsCosntruida = PlayerPrefs.GetInt("PuntoDrillsCosntruida");
+        puntoRocketCosntruida = PlayerPrefs.GetInt("PuntoRocketCosntruida");
         if (puntoCasa2Cosntruida >= 1)
         {
             iconoConstruirCasa2.SetActive(false);
@@ -99,15 +124,26 @@ public class Construir : MonoBehaviour
         if (puntoLaboratorioCosntruida >= 1)
         {
             iconoConstruirLaboratorio.SetActive(false);
-           laboratorio.SetActive(true);
+            laboratorio.SetActive(true);
         }
         if (puntoObservatorioCosntruida >= 1)
         {
             iconoConstruirObservatorio.SetActive(false);
             observatorio.SetActive(true);
         }
+        if (puntoDrillsCosntruida >= 1)
+        {
+            iconoConstruirDrills.SetActive(false);
+            drills.SetActive(true);
+        }
+        if (puntoRocketCosntruida >= 1)
+        {
+            iconoConstruirRocket.SetActive(false);
+            rocket.SetActive(true);
+        }
         Invoke(nameof(Verif), 0.25f);
     }
+//me quede seteando los rockets. ver cuantas mejoiras de zafiro tengo, añadir 1 mejora a park que sea de zafiro e incremente el valor gold
     void Verif()
     {
         Invoke(nameof(Verif), 0.25f);
@@ -117,6 +153,9 @@ public class Construir : MonoBehaviour
         PlayerPrefs.SetString("CosteGoldCatedral", costeGoldCatedral.ToString());
         PlayerPrefs.SetString("CosteGoldLaboratorio", costeGoldLaboratorio.ToString());
         PlayerPrefs.SetString("CosteGoldObservatorio", costeGoldObservatorio.ToString());
+        PlayerPrefs.SetString("CosteGoldDrills", costeGoldDrills.ToString());
+        PlayerPrefs.SetString("CosteGoldRocket", costeGoldRocket.ToString());
+        PlayerPrefs.SetString("CosteZafiroRocket", costeZafiroRocket.ToString());
         if (costeGoldCasa2 >= 1000)
         {
             var exponent = (System.Math.Floor(System.Math.Log10(System.Math.Abs(costeGoldCasa2))));
@@ -189,37 +228,120 @@ public class Construir : MonoBehaviour
             costeGoldObservatorioText.text = costeGoldObservatorio.ToString("F0");
 
         }
+        if (costeGoldDrills >= 1000)
+        {
+            var exponent = (System.Math.Floor(System.Math.Log10(System.Math.Abs(costeGoldDrills))));
+            var mantissa = (costeGoldDrills / System.Math.Pow(10, exponent));
+            costeGoldDrillText.text = mantissa.ToString("F2") + "e" + exponent;
+
+        }
+        else
+        {
+            costeGoldDrillText.text = costeGoldDrills.ToString("F0");
+
+        }
+        if (costeGoldRocket >= 1000)
+        {
+            var exponent = (System.Math.Floor(System.Math.Log10(System.Math.Abs(costeGoldRocket))));
+            var mantissa = (costeGoldRocket / System.Math.Pow(10, exponent));
+            costeGoldRocketText.text = mantissa.ToString("F2") + "e" + exponent;
+
+        }
+        else
+        {
+            costeGoldRocketText.text = costeGoldRocket.ToString("F0");
+
+        }
+        if (costeZafiroRocket >= 1000)
+        {
+            var exponent = (System.Math.Floor(System.Math.Log10(System.Math.Abs(costeZafiroRocket))));
+            var mantissa = (costeZafiroRocket / System.Math.Pow(10, exponent));
+            costeZafiroRocketText.text = mantissa.ToString("F2") + "e" + exponent;
+
+        }
+        else
+        {
+            costeZafiroRocketText.text = costeZafiroRocket.ToString("F0");
+
+        }
     }
     public void ConstruirCasa2()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeGoldCasa2)
         {
+            AudioManager.instance.PlaySFX("Construir");
             ObjectPool.SpawnObject(particulasConstruir, new Vector3(-13.18f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeGoldCasa2;
             iconoConstruirCasa2.SetActive(false);
             hoverCasa2.SetActive(false);
             casa2.SetActive(true);
             puntoCasa2Cosntruida = 1;
+            if (GetComponent<Recursos>().cantidadDworfsSinEmpleo <= 98)
+            {
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                GetComponent<Recursos>().cantidadDworfsSinEmpleo += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+                
+            }
+            else
+            {
+                GetComponent<Recursos>().cantidadDworfsSinEmpleoAlmacenados += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+            }
             PlayerPrefs.SetInt("PuntoCasa2Cosntruida", puntoCasa2Cosntruida);
         }
     }
     public void ConstruirCasa3()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeGoldCasa3)
         {
+            AudioManager.instance.PlaySFX("Construir");
             ObjectPool.SpawnObject(particulasConstruir, new Vector3(-14.62f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeGoldCasa3;
             iconoConstruirCasa3.SetActive(false);
             hoverCasa3.SetActive(false);
             casa3.SetActive(true);
             puntoCasa3Cosntruida = 1;
+            if (GetComponent<Recursos>().cantidadDworfsSinEmpleo <= 98)
+            {
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                GetComponent<Recursos>().cantidadDworfsSinEmpleo += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+            }
+            else
+            {
+                GetComponent<Recursos>().cantidadDworfsSinEmpleoAlmacenados += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+            }
             PlayerPrefs.SetInt("PuntoCasa3Cosntruida", puntoCasa3Cosntruida);
         }
     }
     public void ConstruirCasaMineros()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeGoldCasaMineros)
         {
+            AudioManager.instance.PlaySFX("Construir");
             ObjectPool.SpawnObject(particulasConstruir, new Vector3(-9.68f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeGoldCasaMineros;
             iconoConstruirCasaMineros.SetActive(false);
@@ -231,8 +353,10 @@ public class Construir : MonoBehaviour
     }
     public void ConstruirSuctionMachine()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Intro>().puntoComprarSuction >= 1)
         {
+            AudioManager.instance.PlaySFX("Construir");
             ObjectPool.SpawnObject(particulasConstruir, new Vector3(3.76f, -3, 0), Quaternion.identity);
             iconoConstruirSuctionMachine.SetActive(false);
             hoverSuctionMachine.SetActive(false);
@@ -247,8 +371,10 @@ public class Construir : MonoBehaviour
     }
     public void ConstruirCatedral()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeGoldCatedral)
         {
+            AudioManager.instance.PlaySFX("Construir");
             ObjectPool.SpawnObject(particulasConstruir, new Vector3(-19.1f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeGoldCatedral;
             iconoConstruirCatedral.SetActive(false);
@@ -260,8 +386,10 @@ public class Construir : MonoBehaviour
     }
     public void ConstruirLaboratorio()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeGoldLaboratorio)
         {
+            AudioManager.instance.PlaySFX("Construir");
             ObjectPool.SpawnObject(particulasConstruir, new Vector3(-16.73f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeGoldLaboratorio;
             iconoConstruirLaboratorio.SetActive(false);
@@ -273,9 +401,11 @@ public class Construir : MonoBehaviour
     }
     public void ConstruirObservatorio()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeGoldObservatorio)
         {
-            ObjectPool.SpawnObject(particulasConstruir, new Vector3(-37.47f, -3, 0), Quaternion.identity);
+            AudioManager.instance.PlaySFX("Construir");
+            ObjectPool.SpawnObject(particulasConstruir, new Vector3(-28.46f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeGoldObservatorio;
             iconoConstruirObservatorio.SetActive(false);
             hoverObservatorio.SetActive(false);
@@ -284,6 +414,41 @@ public class Construir : MonoBehaviour
             PlayerPrefs.SetInt("PuntoObservatorioCosntruida", puntoObservatorioCosntruida);
         }
     }
-
+    public void ConstruirDrill()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (GetComponent<Recursos>().cantidadOro >= costeGoldDrills)
+        {
+            AudioManager.instance.PlaySFX("Construir");
+            ObjectPool.SpawnObject(particulasConstruir, new Vector3(-21.64f, -3, 0), Quaternion.identity);
+            GetComponent<Recursos>().cantidadOro -= costeGoldDrills;
+            iconoConstruirDrills.SetActive(false);
+            hoverDrills.SetActive(false);
+            drills.SetActive(true);
+            puntoDrillsCosntruida = 1;
+            PlayerPrefs.SetInt("PuntoDrillsCosntruida", puntoDrillsCosntruida);
+        }
+    }
+    public void ConstruirSilo()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (GetComponent<Recursos>().cantidadOro >= costeGoldRocket && GetComponent<Recursos>().cantidadZafiro >= costeZafiroRocket)
+        {
+            demoEnds.SetActive(true);
+            AudioManager.instance.PlaySFX("Construir");
+            ObjectPool.SpawnObject(particulasConstruir, new Vector3(-33.18f, -3, 0), Quaternion.identity);
+            GetComponent<Recursos>().cantidadOro -= costeGoldRocket;
+            GetComponent<Recursos>().cantidadZafiro -= costeZafiroRocket;
+            iconoConstruirRocket.SetActive(false);
+            hoverRocket.SetActive(false);
+            rocket.SetActive(true);
+            puntoRocketCosntruida = 1;
+            PlayerPrefs.SetInt("PuntoRocketCosntruida", puntoRocketCosntruida);
+        }
+    }
+    public void CloseDemo()
+    {
+        demoEnds.SetActive(false);
+    }
 
 }

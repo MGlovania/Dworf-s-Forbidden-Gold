@@ -15,15 +15,7 @@ public class Camara : MonoBehaviour
 
     public bool drag = false;
     public GameObject player;
-    private void Start()
-    {
-    }
-   
-    void Update()
-    {
-        
-
-    }
+  
     private void LateUpdate()
     {
         if (Input.GetMouseButton(1))

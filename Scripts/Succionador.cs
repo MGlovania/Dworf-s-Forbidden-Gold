@@ -39,6 +39,10 @@ public class Succionador : MonoBehaviour
             Invoke(nameof(Verif), timeSuccionar);
             if (manager.GetComponent<Recursos>().puntoCamionEsperando == 0 && manager.GetComponent<Recursos>().puntoSuccion == 0 && manager.GetComponent<Recursos>().cantidadPepitasEnSuelo >= 1)
             {
+                if (manager.GetComponent<Recursos>().puntoColliderSonidoPiedra >= 1)
+                {
+                    AudioManager.instance.PlaySFX("SuctionSfx");
+                }
                 cantidadASuccionar2 += 1;
                 manager.GetComponent<Recursos>().puntoSuccion = 1;
                 Vector2 direction = (camion.transform.position + Vector3.up * Random.Range(6f, 7f)) - transform.position;

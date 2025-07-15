@@ -10,7 +10,13 @@ public class MejorasMineros : MonoBehaviour
     public TMP_Text costeOroMejoraMinersMenosSleepText;
     public TMP_Text costeOroMejoraMinersMasEnergiaText;
 
- 
+    public TMP_Text nivelOroMejoraMasMinersText;
+    public TMP_Text nivelOroMejorMinersMasSpeedText;
+    public TMP_Text nivelOroMejoraMinersMasDañoText;
+    public TMP_Text nivelOroMejoraMinersMenosSleepText;
+    public TMP_Text nivelOroMejoraMinersMasEnergiaText;
+
+
     public double costeOroMejoraMasMiners;
     public int nivelMejoraMasMiners;
 
@@ -37,41 +43,39 @@ public class MejorasMineros : MonoBehaviour
 
 
     public GameObject particulasMejora;
+
+    public GameObject prestigio;
     void Start()
     {
-        costeOroMejoraMasMiners = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasMiners", "25"));
+        costeOroMejoraMasMiners = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasMiners", "0"));
         nivelMejoraMasMiners = PlayerPrefs.GetInt("NivelMejoraMasMiners");
-        costeOroMejoraMinersMasVelocidad = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMinersMasVelocidad", "75"));
+        costeOroMejoraMinersMasVelocidad = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMinersMasVelocidad", "40"));
         nivelMejoraMinersMasVelocidad = PlayerPrefs.GetInt("NivelMejoraMinersMasVelocidad");
-        costeOroMejoraMinersMasDaño = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMinersMasDaño", "75"));
+        costeOroMejoraMinersMasDaño = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMinersMasDaño", "40"));
         nivelMejoraMinersMasDaño = PlayerPrefs.GetInt("NivelMejoraMinersMasDaño");
-        costeOroMejoraMinersMenosSleep = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMinersMenosSleep", "100"));
+        costeOroMejoraMinersMenosSleep = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMinersMenosSleep", "75"));
         nivelMejoraMinersMenosSleep = PlayerPrefs.GetInt("NivelMejoraMinersMenosSleep");
-        costeOroMejoraMinersMasEnergia = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMinersMasEnergia", "100"));
+        costeOroMejoraMinersMasEnergia = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMinersMasEnergia", "75"));
         nivelMejoraMinersMasEnergia = PlayerPrefs.GetInt("NivelMejoraMinersMasEnergia");
         Invoke(nameof(Verif), 0.2f);
      
     }
-    public void MineroSleep()
-    {
-        Invoke(nameof(Despertar), GetComponent<Recursos>().sleepMiners);
-     
-    }
-    void Despertar()
-    {
-        ObjectPool.SpawnObject(prefabMiner, casaMineros.transform.position + Vector3.right / 2, Quaternion.identity);
-    }
+  
     void Verif()
     {
-        if (puntoSpawnearMinerosStart < nivelMejoraMasMiners && puntoQuitarStartSpawn <= 0)
+        nivelOroMejoraMasMinersText.text = "(" + nivelMejoraMasMiners.ToString("F0") + ")";
+        nivelOroMejoraMinersMasDañoText.text = "(" + nivelMejoraMinersMasDaño.ToString("F0") + ")";
+        nivelOroMejoraMinersMenosSleepText.text = "(" + nivelMejoraMinersMenosSleep.ToString("F0") + ")";
+        nivelOroMejoraMinersMasEnergiaText.text = "(" + nivelMejoraMinersMasEnergia.ToString("F0") + ")";
+        if (nivelMejoraMinersMasVelocidad >= 15)
         {
-            puntoSpawnearMinerosStart += 1;
-            ObjectPool.SpawnObject(prefabMiner, casaMineros.transform.position + Vector3.right / 2, Quaternion.identity);
+            nivelOroMejorMinersMasSpeedText.text = "(Max)";
         }
         else
         {
-            puntoQuitarStartSpawn = 1;
+            nivelOroMejorMinersMasSpeedText.text = "(" + nivelMejoraMinersMasVelocidad.ToString("F0") + ")";
         }
+
         Invoke(nameof(Verif), 0.2f);
         PlayerPrefs.SetString("CosteOroMejoraMasMiners", costeOroMejoraMasMiners.ToString());
         PlayerPrefs.SetInt("NivelMejoraMasMiners", nivelMejoraMasMiners);
@@ -146,56 +150,86 @@ public class MejorasMineros : MonoBehaviour
     }
     public void MejoraMasMiners()
     {
-        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasMiners && nivelMejoraMasMiners < 25)
+        AudioManager.instance.PlaySFX("Click");
+        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasMiners && nivelMejoraMasMiners < 30 && GetComponent<Recursos>().cantidadDworfsSinEmpleo >= 1)
         {
-
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-9.64f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasMiners;
-            GetComponent<Recursos>().cantidadDworfsSinEmpleo -= 1;
-            GetComponent<Recursos>().cantidadDworfsMineros += 1;
-            costeOroMejoraMasMiners *= 3;
-            nivelMejoraMasMiners += 1;
-            ObjectPool.SpawnObject(prefabMiner, casaMineros.transform.position + Vector3.right / 2, Quaternion.identity);
-            GameObject obj = GameObject.FindGameObjectWithTag("Aldeano");
-            if (obj != null)
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
             {
-                ObjectPool.ReturnObjectToPool(obj);
+                GetComponent<Recursos>().dañoClick /= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
             }
+            if (GetComponent<Recursos>().cantidadDworfsSinEmpleoAlmacenados >= 1)
+            {
+                GetComponent<Recursos>().cantidadDworfsSinEmpleoAlmacenados -= 1;
+            }
+            else
+            {
+                GameObject obj = GameObject.FindGameObjectWithTag("Aldeano");
+                if (obj != null)
+                {
+                    ObjectPool.ReturnObjectToPool(obj);
+                }
+                GetComponent<Recursos>().cantidadDworfsSinEmpleo -= 1;
+            }
+            GetComponent<Recursos>().cantidadDworfsMineros += 1;
+            GetComponent<Recursos>().SpawnMineros();
+            if (costeOroMejoraMasMiners == 0)
+            {
+                costeOroMejoraMasMiners = 75;
+            }
+            else
+            {
+                costeOroMejoraMasMiners *= 3;
+            }
+            nivelMejoraMasMiners += 1;
+            
         }
     }
     public void MejoraMasVelocidad()
     {
-        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMinersMasVelocidad && nivelMejoraMinersMasVelocidad < 20)
+        AudioManager.instance.PlaySFX("Click");
+        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMinersMasVelocidad && nivelMejoraMinersMasVelocidad < 10)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-9.64f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMinersMasVelocidad;
             GetComponent<Recursos>().speedMiners *= 1.1f;
-            GetComponent<Recursos>().speedAtaqueMiners /= 1.1f;
-            if (nivelMejoraMinersMasVelocidad >= 10)
+            GetComponent<Recursos>().speedAtaqueMiners /= 1.2f;
+            if (nivelMejoraMinersMasVelocidad >= 6)
             {
-                costeOroMejoraMinersMasVelocidad *= 5f;
+                costeOroMejoraMinersMasVelocidad *= 2.8f;
             }
             else
             {
-                costeOroMejoraMinersMasVelocidad *= 2.5f;
+                costeOroMejoraMinersMasVelocidad *= 1.8f;
             }
             nivelMejoraMinersMasVelocidad += 1;
         }
     }
     public void MejoraMasDaño()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMinersMasDaño)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-9.64f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMinersMasDaño;
-            GetComponent<Recursos>().dañoDworfsMineros *= 1.25f;
+            GetComponent<Recursos>().dañoDworfsMineros *= 1.35f;
             costeOroMejoraMinersMasDaño *= 2f;
             nivelMejoraMinersMasDaño += 1;
         }
     }
     public void MejoraMenosSleep()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMinersMenosSleep)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-9.64f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMinersMenosSleep;
-            GetComponent<Recursos>().sleepMiners /= 1.1f;
+            GetComponent<Recursos>().sleepMiners /= 1.2f;
             if (nivelMejoraMinersMenosSleep >= 10)
             {
                 costeOroMejoraMinersMenosSleep *= 5f;
@@ -209,10 +243,13 @@ public class MejorasMineros : MonoBehaviour
     }
     public void MejoraMasEnergia()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMinersMasEnergia)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-9.64f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMinersMasEnergia;
-            GetComponent<Recursos>().energiaMiners *= 1.1f;
+            GetComponent<Recursos>().energiaMiners *= 1.2f;
             if (nivelMejoraMinersMasEnergia >= 10)
             {
                 costeOroMejoraMinersMasEnergia *= 5f;
@@ -226,8 +263,5 @@ public class MejorasMineros : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        
-    }
+  
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PJ : MonoBehaviour
 {
     public Rigidbody2D Rigidbody2D;
@@ -24,6 +24,8 @@ public class PJ : MonoBehaviour
 
     public GameObject verEstrellas;
     public GameObject regresarAlCentro;
+    public GameObject hoverVerEstrellas;
+    public GameObject hoverRegresarAlCentro;
 
     public GameObject manager;
 
@@ -40,6 +42,9 @@ public class PJ : MonoBehaviour
     public GameObject truck;
     public GameObject iglesia;
     public GameObject suction;
+    public GameObject park;
+    public GameObject silo;
+    public GameObject drill;
 
     public GameObject prefabParticulaDestruir;
 
@@ -51,28 +56,35 @@ public class PJ : MonoBehaviour
     public GameObject particulasRubi;
     public GameObject particulasFlores;
     public GameObject particulasEstrellas;
+    public GameObject particulasEstrellaGigante;
 
     public GameObject camara;
 
+
+
+    public int puntoQuitarRecursos;
+    public GameObject prestigio;
+
     private void Start()
     {
-        puntoPrestigio = PlayerPrefs.GetInt("PuntoPrestigio");
+      //  puntoPrestigio = PlayerPrefs.GetInt("PuntoPrestigio");
+      
+    }
+    private void OnApplicationQuit()
+    {
         if (puntoPrestigio >= 1)
         {
             manager.GetComponent<Recursos>().cantidadOro = 0;
             manager.GetComponent<Recursos>().cantidadFe = 0;
-            manager.GetComponent<Recursos>().cantidadDworfsSinEmpleo = 0;
-            puntoPrestigioMoverCamara = 5;
-            Invoke(nameof(QuitarMovCamera), 1.5f);
-            verEstrellas.SetActive(false);
-            regresarAlCentro.SetActive(true);
-            limite.SetActive(false);
+            manager.GetComponent<Recursos>().cantidadZafiro = 0;
+            manager.GetComponent<Recursos>().cantidadDworfsSinEmpleo = 2;
+            puntoPrestigio = 0;
+          //  PlayerPrefs.SetInt("PuntoPrestigio", puntoPrestigio);
         }
-
     }
     void Update()
     {
-        PlayerPrefs.SetInt("PuntoPrestigio", puntoPrestigio);
+      //  PlayerPrefs.SetInt("PuntoPrestigio", puntoPrestigio);
        
         Horizontal = Input.GetAxisRaw("Horizontal");
         Vertical = Input.GetAxisRaw("Vertical");
@@ -80,21 +92,25 @@ public class PJ : MonoBehaviour
     }
     void QuitarMovCamera()
     {
+        manager.GetComponent<Recursos>().puntoMostrarRecuadroStarPoints = 1;
         particulasEstrellas.SetActive(false);
+        particulasEstrellaGigante.SetActive(false);
         puntoPrestigioMoverCamara = 0;
         limitePrestigio.SetActive(true);
     }
     public void PrestigioReset()
     {
-      
+        puntoQuitarRecursos = 0;
         particulasOro.SetActive(false);
         particulasFe.SetActive(false);
         particulasDworf.SetActive(false);
         manager.GetComponent<Recursos>().cantidadOro = 0;
         manager.GetComponent<Recursos>().cantidadFe = 0;
-        manager.GetComponent<Recursos>().cantidadDworfsSinEmpleo = 0;
+        manager.GetComponent<Recursos>().cantidadZafiro = 0;
+        manager.GetComponent<Recursos>().cantidadDworfsSinEmpleo = 2;
         camara.GetComponent<Zoom>().noEstaEnPestigio = 0;
         verEstrellas.SetActive(false);
+        hoverVerEstrellas.SetActive(false);
         regresarAlCentro.SetActive(true);
         puntoPrestigioMoverCamara = 5;
         Invoke(nameof(QuitarMovCamera), 3.5f);
@@ -140,9 +156,14 @@ public class PJ : MonoBehaviour
         casa.SetActive(false);
         ObjectPool.SpawnObject(prefabParticulaDestruir, casa.transform.position, Quaternion.identity);
     }
+    void QuitarPuntoPrestigio()
+    {
+        puntoPrestigio = 1;
+    }
     void ParticulaDestruirEnGeneral()
     {
-        puntoPrestigio = 2;
+        puntoQuitarRecursos = 1;
+        Invoke(nameof(QuitarPuntoPrestigio), 1);
         particulasOro.SetActive(true);
         particulasFe.SetActive(true);
         particulasDworf.SetActive(true);
@@ -178,15 +199,42 @@ public class PJ : MonoBehaviour
             suction.SetActive(false);
             ObjectPool.SpawnObject(prefabParticulaDestruir, suction.transform.position, Quaternion.identity);
         }
-        ObjectPool.SpawnObject(prefabParticulaDestruir, truck.transform.position, Quaternion.identity);
+        if (manager.GetComponent<Construir>().puntoDrillsCosntruida >= 1)
+        {
+            drill.SetActive(false);
+            ObjectPool.SpawnObject(prefabParticulaDestruir, suction.transform.position, Quaternion.identity);
+        }
+        if (manager.GetComponent<Construir>().puntoRocketCosntruida >= 1)
+        {
+            silo.SetActive(false);
+            ObjectPool.SpawnObject(prefabParticulaDestruir, silo.transform.position, Quaternion.identity);
+        }
+        if (manager.GetComponent<MejorasPrestigio>().nivelMejoraParqueAtraccion >= 1)
+        {
+            park.SetActive(false);
+            ObjectPool.SpawnObject(prefabParticulaDestruir, park.transform.position, Quaternion.identity);
+        }
+        ObjectPool.SpawnObject(prefabParticulaDestruir, drill.transform.position, Quaternion.identity);
     }
     void ActivarEstrellas()
     {
         particulasEstrellas.SetActive(true);
     }
+    void ActivarEstrellaGigante()
+    {
+        particulasEstrellaGigante.SetActive(true);
+        Invoke(nameof(ObtenerStarPoint), 3.5f);
+    }
+    void ObtenerStarPoint()
+    {
+        manager.GetComponent<Recursos>().cantidadStarPoints += manager.GetComponent<Recursos>().cantidadStarPointsAlPrestigear;
+        manager.GetComponent<Recursos>().cantidadReqParaStarPoint = 1000;
+        manager.GetComponent<Recursos>().cantidadStarPointsAlPrestigear = 0;
+     
+    }
     public void PuntoPrestigio()
     {
-       
+
         camara.GetComponent<Zoom>().zoom = 2f;
 
         verEstrellas.SetActive(false);
@@ -194,7 +242,7 @@ public class PJ : MonoBehaviour
         limite.SetActive(false);
         recuadroPrestigio.SetActive(false);
 
-      
+
 
         puntoPrestigio = 1;
         Invoke(nameof(MoverHaciaObservatorio), 1f);
@@ -205,24 +253,64 @@ public class PJ : MonoBehaviour
         Invoke(nameof(ParticulaDestruirCasa), 6.25f);
         Invoke(nameof(MoverHaciaGeneral), 7f);
         Invoke(nameof(ParticulaDestruirEnGeneral), 8.25f);
-        Invoke(nameof(ActivarEstrellas), 10);
+        Invoke(nameof(ActivarEstrellas), 9);
+        Invoke(nameof(ActivarEstrellaGigante), 14);
         Invoke(nameof(PrestigioReset), 13.5f);
 
 
+        manager.GetComponent<Menus>().puntoPrestigioDesSeleccionarPociones = 1;
+
+
+
+
+        //set back pociones
+        manager.GetComponent<Menus>().pocionDworf.GetComponent<Image>().sprite = manager.GetComponent<Menus>().pocionDworfDesSeleccionada;
+        manager.GetComponent<Menus>().puntoDworfSeleccionada = 0;
+        manager.GetComponent<Menus>().pocionHardness.GetComponent<Image>().sprite = manager.GetComponent<Menus>().pocionHardnessDesSeleccionada;
+        manager.GetComponent<Menus>().puntoHardnessSeleccionada = 0;
+        manager.GetComponent<Menus>().pocionRGB.GetComponent<Image>().sprite = manager.GetComponent<Menus>().pocionRGBDesSeleccionada;
+        manager.GetComponent<Menus>().puntoRGBSeleccionada = 0;
+    
+
         //recursos y piedra
-        manager.GetComponent<Recursos>().cantidadStarPoints += manager.GetComponent<Recursos>().cantidadStarPointsAlPrestigear;
         manager.GetComponent<Recursos>().valorDworfsFe = 1;
-        manager.GetComponent<Recursos>().cantidadPepitasMax = 600;
-        manager.GetComponent<Recursos>().cantidadReqParaStarPoint = 5000;
-        manager.GetComponent<Recursos>().cantidadStarPointsAlPrestigear = 0;
-        manager.GetComponent<Recursos>().pesoPiedra = 1;
+        manager.GetComponent<Recursos>().cantidadPepitasMax = 600;     
+       manager.GetComponent<Recursos>().pesoPiedra = 1;
         manager.GetComponent<Recursos>().vidaMaxPiedra = 1;
-        manager.GetComponent<Recursos>().valorPiedra = 1;
+        manager.GetComponent<Recursos>().valorZafiro = 1;
+        manager.GetComponent<Recursos>().vidaMaxZafiro = 10000;
+        if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+        {
+            manager.GetComponent<Recursos>().valorPiedra = 1;
+            for (int i = 0; i < prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor; i++)
+            {
+                manager.GetComponent<Recursos>().valorPiedra *= 1.5f;
+            }
+        }
+        else
+        {
+            manager.GetComponent<Recursos>().valorPiedra = 1;
+        }
+        manager.GetComponent<Recursos>().cantidadDworfsMinerosEnPantalla = 0;
+        manager.GetComponent<Recursos>().cantidadDrillsEnPantalla = 0;
+        manager.GetComponent<Recursos>().cantidadDworfsAlquimistasEnPantalla = 0;
+
+
+     
+
+
 
         //Clicks
         manager.GetComponent<Recursos>().dañoClick = 1;
         manager.GetComponent<Recursos>().dañoCrit = 2;
-        manager.GetComponent<Recursos>().probCrit = 0;
+        if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasProbClickCrit >= 1)
+        {
+            manager.GetComponent<Recursos>().probCrit = 2 * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasProbClickCrit;
+        }
+        else
+        {
+            manager.GetComponent<Recursos>().probCrit = 0;
+        }
 
         //Suction Machine
         manager.GetComponent<Recursos>().cantidadASuccionar = 5;
@@ -296,11 +384,11 @@ public class PJ : MonoBehaviour
         manager.GetComponent<MejorasDeposito>().costeOroMejoraMasVelocidad = 5;
         manager.GetComponent<MejorasLaboratorio>().nivelMejoraMasAlquimistas = 0;
         manager.GetComponent<MejorasLaboratorio>().nivelMejoraMasHardness = 0;
-        manager.GetComponent<MejorasLaboratorio>().nivelMejoraPocionEfficiency = 0;
+        manager.GetComponent<MejorasLaboratorio>().nivelMejoraPocionDworfs = 0;
         manager.GetComponent<MejorasLaboratorio>().nivelMejoraPocionHardness = 0;
         manager.GetComponent<MejorasLaboratorio>().costeOroMejoraHardness = 100;
         manager.GetComponent<MejorasLaboratorio>().costeOroMejoraMasAlquimistas = 150;
-        manager.GetComponent<MejorasLaboratorio>().costeZafiroMejoraPocionEfficiency = 50;
+        manager.GetComponent<MejorasLaboratorio>().costeZafiroMejoraPocionDworfs = 50;
         manager.GetComponent<MejorasLaboratorio>().costeZafiroMejoraPocionHardness = 100;
         manager.GetComponent<MejorasMineros>().nivelMejoraMasMiners = 0;
         manager.GetComponent<MejorasMineros>().nivelMejoraMinersMasDaño = 0;
@@ -324,9 +412,9 @@ public class PJ : MonoBehaviour
         manager.GetComponent<MejorasTruck>().costeOroMejoraMasVelocidad = 5;
 
         //reset dworfs
-        manager.GetComponent<Recursos>().cantidadDworfsAlquimistas = 0;
         manager.GetComponent<Recursos>().cantidadDworfsCollectors = 0;
-        manager.GetComponent<Recursos>().cantidadDworfsMineros = 0;      
+        manager.GetComponent<Recursos>().cantidadDworfsMineros = 0;
+        manager.GetComponent<Recursos>().cantidadDrills = 0;
         manager.GetComponent<Recursos>().cantidadTotalDworfs = 2;
 
         Invoke(nameof(SetearA0CantidadPepitasEnFozo), 1f);
@@ -342,8 +430,9 @@ public class PJ : MonoBehaviour
     }
     public void Prestigio()
     {
-      
+        AudioManager.instance.PlaySFX("Click");
         verEstrellas.SetActive(false);
+        hoverVerEstrellas.SetActive(false);
         regresarAlCentro.SetActive(true);
         puntoMirarEstrellas = 1;
         Invoke(nameof(QuitarPrestigio), 1.5f);
@@ -356,7 +445,9 @@ public class PJ : MonoBehaviour
     }
     public void VolverAlCentro()
     {
+        AudioManager.instance.PlaySFX("Click");
         verEstrellas.SetActive(true);
+        hoverRegresarAlCentro.SetActive(false);
         regresarAlCentro.SetActive(false);
         puntoMirarEstrellas = 2;
         Invoke(nameof(VolverAlCentroPonerLimite), 1.5f);
@@ -370,9 +461,9 @@ public class PJ : MonoBehaviour
  
     private void FixedUpdate()
     {
-        if (puntoPrestigio >= 2)
+        if (puntoQuitarRecursos >= 1)
         {
-            if (manager.GetComponent<Recursos>().cantidadDworfsSinEmpleo >= 1)
+            if (manager.GetComponent<Recursos>().cantidadDworfsSinEmpleo >= 3)
             {
                 manager.GetComponent<Recursos>().cantidadDworfsSinEmpleo -= 1;
             }
@@ -392,7 +483,11 @@ public class PJ : MonoBehaviour
             Rigidbody2D.velocity = new Vector2(Horizontal * speed, Rigidbody2D.velocity.y);
             Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, Vertical * speed);
         }
-      
+        if (puntoLimite >= 1)
+        {
+            transform.position = new Vector3(0, -1, 0);
+        }
+
 
         if (puntoMirarEstrellas == 1)
         {
@@ -423,15 +518,46 @@ public class PJ : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, posicionPrestigio.transform.position, 1);
         }
     }
+    void QuitarPuntoLimite()
+    {
+        puntoLimite = 0;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Limite"))
         {
-         
+            puntoLimite = 1;
+            Invoke(nameof(QuitarPuntoLimite), 1f);
             transform.position = new Vector3(0, -1, 0);
         }
-    
+        if (collision.CompareTag("ColliderSonidoPiedra"))
+        {
+            manager.GetComponent<Recursos>().puntoColliderSonidoPiedra = 1;
+        }
+        if (collision.CompareTag("ColliderSonidoCentro"))
+        {
+            manager.GetComponent<Recursos>().puntoColliderSonidoCentro = 1;
+        }
+        if (collision.CompareTag("ColliderSonidoZafiroYTal"))
+        {
+            manager.GetComponent<Recursos>().puntoColliderSonidoZafiroYTal = 1;
+        }
+
     }
-   
-  
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ColliderSonidoPiedra"))
+        {
+            manager.GetComponent<Recursos>().puntoColliderSonidoPiedra = 0;
+        }
+        if (collision.CompareTag("ColliderSonidoCentro"))
+        {
+            manager.GetComponent<Recursos>().puntoColliderSonidoCentro = 0;
+        }
+        if (collision.CompareTag("ColliderSonidoZafiroYTal"))
+        {
+            manager.GetComponent<Recursos>().puntoColliderSonidoZafiroYTal = 0;
+        }
+    }
+
 }

@@ -6,9 +6,8 @@ public class Dworfs : MonoBehaviour
 {
     public GameObject manager;
 
-    public bool esCollector;
     public double cargoActual;
-    public double cargoAFuturo;
+  //  public double cargoAFuturo;
     public double capacidadMax;
     public float speedCollector;
     public float speedCollectorRecolectar;
@@ -16,14 +15,9 @@ public class Dworfs : MonoBehaviour
     public GameObject deposito;
     public GameObject prefabPepitaProp;
     public int puntoCollectando;
-    public int puntoCollectando2;
-    public int puntoCollectando3;
-    public int puntoCollectando4;
     public int puntoDescargando;
     public int anularMovimiento;
 
-    public bool esMinero;
-   
 
     public GameObject prefabPopUp;
     public GameObject player;
@@ -32,21 +26,21 @@ public class Dworfs : MonoBehaviour
     public int puntoMorir;
     void OnEnable()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        puntoCollectando = 0;
+           player = GameObject.FindGameObjectWithTag("Player");
         anularMovimiento = 0;
         puntoMorir = 0;
         puntoDescargando = 0;
         cargoActual = 0;
-        cargoAFuturo = 0;
+       // cargoAFuturo = 0;
         manager = GameObject.FindGameObjectWithTag("Manager");
         deposito = GameObject.FindGameObjectWithTag("Deposito");
-        if (esCollector)
-        {
+      
             truck = GameObject.FindGameObjectWithTag("CamionCargamento");        
             speedCollector = manager.GetComponent<Recursos>().speedCollectors;
             capacidadMax = manager.GetComponent<Recursos>().cargoMaxCollectors;
             speedCollectorRecolectar = manager.GetComponent<Recursos>().speedCollectorsRecolectar;
-        }
+        
         Invoke(nameof(Verif), 0.25f);
         Invoke(nameof(VerifPrestigio), 1f);
     }
@@ -68,7 +62,7 @@ public class Dworfs : MonoBehaviour
         {
             Invoke(nameof(Anular), 0.75f);
         }
-        if (truck.GetComponent<CamionDeCargo>().collectorsQuitar == 1 && cargoActual <= 0)
+        if (truck.GetComponent<CamionDeCargo>().collectorsQuitar == 1 && cargoActual <= 0 && puntoMorir <= 0)
         {
             Invoke(nameof(Quitar), 0.5f);
         }
@@ -76,11 +70,11 @@ public class Dworfs : MonoBehaviour
         {
             Invoke(nameof(Verif), 0.25f);
         }
-        if (esCollector && cargoActual < capacidadMax)
+        if (cargoActual == capacidadMax ||  cargoActual == 0)
         {
             GetComponent<Animator>().SetBool("Caminar", true);
         }
-        else if (esCollector)
+        else
         {
             GetComponent<Animator>().SetBool("Caminar", false);
         }
@@ -97,24 +91,30 @@ public class Dworfs : MonoBehaviour
     }
     void Quitar()
     {
-        ObjectPool.ReturnObjectToPool(gameObject);
+        if (puntoMorir <= 0)
+        {
+            Debug.Log("Disable2");
+            ObjectPool.ReturnObjectToPool(gameObject);
+        }
+    
     }
     void Recolectar()
     {
-        if (truck.GetComponent<CamionDeCargo>().cantidad >= 1 && cargoAFuturo < capacidadMax)
+        if (truck.GetComponent<CamionDeCargo>().cantidad >= 1 && cargoActual < capacidadMax)
         {
           
-            Vector2 direction = (transform.position + Vector3.up * Random.Range(6f, 7f)) - transform.position;
+            Vector2 direction = (transform.position + Vector3.up * 7) - transform.position;
             transform.right = direction;
             GameObject obj = ObjectPool.SpawnObject(prefabPepitaProp, transform.position + Vector3.up, Quaternion.identity);
-            obj.GetComponent<Rigidbody2D>().velocity = transform.right * Random.Range(6, 7);
+            obj.GetComponent<Rigidbody2D>().velocity = transform.right * 7;
             obj.GetComponent<ReturnObj>().esPepitaProp = true;
-            obj.GetComponent<ReturnObj>().cantidadPepita = manager.GetComponent<Recursos>().cargoMaxCollectors / 10;
+          //  obj.GetComponent<ReturnObj>().cantidadPepita = manager.GetComponent<Recursos>().cargoMaxCollectors / 10;
             transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.up / 1.5f, 2);
             transform.rotation = Quaternion.Euler(Vector3.zero);      
             Invoke(nameof(Recolectar), speedCollectorRecolectar);
             truck.GetComponent<CamionDeCargo>().cantidad -= manager.GetComponent<Recursos>().pesoPiedra;
-            cargoAFuturo += manager.GetComponent<Recursos>().cargoMaxCollectors / 10;
+            cargoActual += manager.GetComponent<Recursos>().pesoPiedra;
+          //  cargoAFuturo += manager.GetComponent<Recursos>().cargoMaxCollectors / 10;
         }
         else
         {
@@ -128,14 +128,15 @@ public class Dworfs : MonoBehaviour
     {
         if (cargoActual > 0)
         {
-            Vector2 direction = (deposito.transform.position + Vector3.up * Random.Range(6f, 7f)) - transform.position;
+            Vector2 direction = (deposito.transform.position + Vector3.up * 7) - transform.position;
             transform.right = direction;
             GameObject obj = ObjectPool.SpawnObject(prefabPepitaProp, transform.position + Vector3.up, Quaternion.identity);
-            obj.GetComponent<Rigidbody2D>().velocity = transform.right * Random.Range(6, 7);
+            obj.GetComponent<Rigidbody2D>().velocity = transform.right * 7;
             obj.GetComponent<ReturnObj>().esPepitaProp = false;
             transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.up / 1.5f, 2);
             transform.rotation = Quaternion.Euler(Vector3.zero);
             manager.GetComponent<Recursos>().cantidadOro += manager.GetComponent<Recursos>().valorPiedra;
+            manager.GetComponent<Recursos>().totalOro += manager.GetComponent<Recursos>().valorPiedra;
             cargoActual -= manager.GetComponent<Recursos>().pesoPiedra;
             Invoke(nameof(Depositar), speedCollectorRecolectar);
             Invoke(nameof(PopUp), 0.5f);
@@ -144,20 +145,26 @@ public class Dworfs : MonoBehaviour
         {
             puntoDescargando = 0;
         }
-        else
+        else if(puntoMorir <= 0)
         {
+            Debug.Log("aa");
             ObjectPool.ReturnObjectToPool(gameObject);
         }
       
     }
     void PopUp()
     {
+        if (manager.GetComponent<Recursos>().puntoColliderSonidoZafiroYTal >= 1)
+        {
+            AudioManager.instance.PlaySFX("PepitaDeposito");
+        }      
         GameObject popUp = ObjectPool.SpawnObject(prefabPopUp, transform.position + Vector3.up / 2, Quaternion.identity);
-        popUp.GetComponentInChildren<TMP_Text>().text = "+" + manager.GetComponent<Recursos>().valorPiedra.ToString("F0");
+        popUp.GetComponentInChildren<TMP_Text>().text = "+" + manager.GetComponent<Recursos>().valorPiedra.ToString("F1");
     }
     private void OnDisable()
     {
-        manager.GetComponent<Deposito>().cantidadAMandarCollectos -= 1;
+        puntoDescargando = 0;
+        Debug.Log("Disable");
         puntoMorir = 1;
     }
     
@@ -167,7 +174,7 @@ public class Dworfs : MonoBehaviour
         {
             cargoActual = 0;
         }
-        if (esCollector && anularMovimiento <= 0)
+        if (anularMovimiento <= 0)
         {
             if (cargoActual >= capacidadMax && puntoDescargando <= 0)
             {             
@@ -181,7 +188,7 @@ public class Dworfs : MonoBehaviour
                 }
                 transform.position = Vector3.MoveTowards(transform.position, deposito.transform.position, speedCollector * Time.deltaTime);
             }
-            else if (truck.GetComponent<CamionDeCargo>().cantidad >= 1 && cargoActual < capacidadMax && puntoDescargando <= 0 && puntoCollectando <= 0)
+            else if (truck.GetComponent<CamionDeCargo>().cantidad >= 1 && cargoActual <= 0 && puntoDescargando <= 0 && puntoCollectando <= 0)
             {
                 if (GetComponent<SpriteRenderer>().flipX != false)
                 {
@@ -194,7 +201,7 @@ public class Dworfs : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, truck.transform.position + Vector3.left / 3f, speedCollector * Time.deltaTime);
             }         
         }
-        else if(esCollector)
+        else 
         {
             if (GetComponent<SpriteRenderer>().flipX != true)
             {
@@ -225,8 +232,9 @@ public class Dworfs : MonoBehaviour
         {
             if (cargoActual > 0 && puntoDescargando <= 0)
             {
-                cargoAFuturo = 0;
-                puntoDescargando = 1;
+                puntoCollectando = 0;
+                   //  cargoAFuturo = 0;
+                   puntoDescargando = 1;
                 Invoke(nameof(Depositar), speedCollectorRecolectar);
             }
           

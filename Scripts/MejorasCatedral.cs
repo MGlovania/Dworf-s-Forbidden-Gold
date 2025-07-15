@@ -12,6 +12,14 @@ public class MejorasCatedral : MonoBehaviour
     public TMP_Text costeFeMejoraMasDañoDworfsText;
     public TMP_Text costeFeMejoraMasValorOroText;
 
+    public TMP_Text nivelOroMejoraMasDañoClickText;
+    public TMP_Text nivelOroMejoraMasProbCritClickText;
+    public TMP_Text nivelOroMejoraMasDañoCritText;
+    public TMP_Text nivelOroMejoraMasFeText;
+    public TMP_Text nivelFeMejoraMasDañoClickText;
+    public TMP_Text nivelFeMejoraMasDañoDworfsText;
+    public TMP_Text nivelFeMejoraMasValorOroText;
+
     public double costeOroMejoraMasDañoClick;
     public int nivelMejoraMasDañoClick;
 
@@ -36,6 +44,7 @@ public class MejorasCatedral : MonoBehaviour
 
 
     public GameObject particulasMejora;
+    public GameObject prestigio;
     void Start()
     {
         costeOroMejoraMasDañoClick = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasDañoClick", "25"));
@@ -56,6 +65,15 @@ public class MejorasCatedral : MonoBehaviour
     }
     void Verif()
     {
+
+        nivelOroMejoraMasDañoClickText.text = "(" + nivelMejoraMasDañoClick.ToString("F0") + ")";
+        nivelOroMejoraMasProbCritClickText.text = "(" + nivelMejoraMasProbCritClick.ToString("F0") + ")";
+        nivelOroMejoraMasDañoCritText.text = "(" + nivelMejoraMasDañoCrit.ToString("F0") + ")";
+        nivelOroMejoraMasFeText.text = "(" + nivelMejoraMasFe.ToString("F0") + ")";
+        nivelFeMejoraMasDañoClickText.text = "(" + nivelFeMejoraMasDañoClick.ToString("F0") + ")";
+        nivelFeMejoraMasDañoDworfsText.text = "(" + nivelFeMejoraMasDañoDworfs.ToString("F0") + ")";
+        nivelFeMejoraMasValorOroText.text = "(" + nivelFeMejoraMasValorOro.ToString("F0") + ")";
+
         Invoke(nameof(Verif), 0.2f);
         PlayerPrefs.SetString("CosteOroMejoraMasDañoClick", costeOroMejoraMasDañoClick.ToString());
         PlayerPrefs.SetInt("NivelMejoraMasDañoClick", nivelMejoraMasDañoClick);
@@ -158,72 +176,149 @@ public class MejorasCatedral : MonoBehaviour
     }
     public void MejoraMasClick()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasDañoClick)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-19.1f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasDañoClick;
-            GetComponent<Recursos>().dañoClick *= 1.3f;
+            GetComponent<Recursos>().dañoClick *= 1.5f;
             costeOroMejoraMasDañoClick *= 1.75f;
             nivelMejoraMasDañoClick += 1;
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit >= 1)
+            {
+                GetComponent<Recursos>().dañoCrit *= (1 + 0.1f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit);
+            }
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe >= 1)
+            {
+                GetComponent<Recursos>().valorDworfsFe += prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe;
+            }
         }
     }
     public void MejoraMasProbCrit()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasProbCritClick && nivelMejoraMasProbCritClick < 10)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-19.1f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasProbCritClick;
             GetComponent<Recursos>().probCrit += 2;
-            costeOroMejoraMasProbCritClick *= 3.5f;
+            costeOroMejoraMasProbCritClick *= 3f;
             nivelMejoraMasProbCritClick += 1;
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit >= 1)
+            {
+                GetComponent<Recursos>().dañoCrit *= (1 + 0.1f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit);
+            }
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe >= 1)
+            {
+                GetComponent<Recursos>().valorDworfsFe += prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe;
+            }
         }
     }
     public void MejoraMasDañoCrit()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasDañoCrit)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-19.1f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasDañoCrit;
-            GetComponent<Recursos>().dañoCrit *= 1.2f;
-            costeOroMejoraMasDañoCrit *= 2.5f;
+            GetComponent<Recursos>().dañoCrit *= 1.25f;
+            costeOroMejoraMasDañoCrit *= 2.25f;
             nivelMejoraMasDañoCrit += 1;
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit >= 1)
+            {
+                GetComponent<Recursos>().dañoCrit *= (1 + 0.1f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit);
+            }
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe >= 1)
+            {
+                GetComponent<Recursos>().valorDworfsFe += prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe;
+            }
         }
     }
     public void MejoraMasFe()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasFe)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-19.1f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasFe;
             GetComponent<Recursos>().valorDworfsFe += 1;
-            costeOroMejoraMasFe *= 3;
+            costeOroMejoraMasFe *= 2.5f;
             nivelMejoraMasFe += 1;
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit >= 1)
+            {
+                GetComponent<Recursos>().dañoCrit *= (1 + 0.1f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit);
+            }
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe >= 1)
+            {
+                GetComponent<Recursos>().valorDworfsFe += prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe;
+            }
         }
     }
     public void MejoraFeMasClick()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeFeMejoraMasDañoClick)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-19.1f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeFeMejoraMasDañoClick;
-            GetComponent<Recursos>().dañoClick *= 1.3f;
+            GetComponent<Recursos>().dañoClick *= 1.5f;
             costeFeMejoraMasDañoClick *= 1.75f;
             nivelFeMejoraMasDañoClick += 1;
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit >= 1)
+            {
+                GetComponent<Recursos>().dañoCrit *= (1 + 0.1f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit);
+            }
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe >= 1)
+            {
+                GetComponent<Recursos>().valorDworfsFe += prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe;
+            }
         }
     }
     public void MejoraFeMasDañoDworfs()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeFeMejoraMasDañoDworfs)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-19.1f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeFeMejoraMasDañoDworfs;
             GetComponent<Recursos>().dañoDworfsMineros *= 1.25f;
             costeFeMejoraMasDañoDworfs *= 2f;
             nivelFeMejoraMasDañoDworfs += 1;
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit >= 1)
+            {
+                GetComponent<Recursos>().dañoCrit *= (1 + 0.1f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit);
+            }
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe >= 1)
+            {
+                GetComponent<Recursos>().valorDworfsFe += prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe;
+            }
         }
     }
     public void MejoraFeMasValorOro()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeFeMejoraMasValorOro)
         {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(-19.1f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeFeMejoraMasValorOro;
             GetComponent<Recursos>().valorPiedra *= 1.5f;
             costeFeMejoraMasValorOro *= 2.5f;
             nivelFeMejoraMasValorOro += 1;
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit >= 1)
+            {
+                GetComponent<Recursos>().dañoCrit *= (1 + 0.1f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoCrit);
+            }
+            if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe >= 1)
+            {
+                GetComponent<Recursos>().valorDworfsFe += prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasFe;
+            }
         }
     }
 

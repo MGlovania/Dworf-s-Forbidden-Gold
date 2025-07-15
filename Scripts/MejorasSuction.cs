@@ -8,6 +8,10 @@ public class MejorasSuction : MonoBehaviour
     public TMP_Text costeOroMejorMasSpeedText;
     public TMP_Text costeOroMejoraMasSuccionadosText;
 
+    public TMP_Text nivelOroMejoraMenosRechargeText;
+    public TMP_Text nivelOroMejorMasSpeedText;
+    public TMP_Text nivelOroMejoraMasSuccionadosText;
+
     public double costeOroMejoraMenosRecharge;
     public int nivelMejoraMenosRecharge;
 
@@ -34,6 +38,24 @@ public class MejorasSuction : MonoBehaviour
     void Verif()
     {
       
+     
+        nivelOroMejoraMasSuccionadosText.text = "(" + nivelMejoraMasSuccionados.ToString("F0") + ")";
+        if (nivelMejoraMenosRecharge >= 15)
+        {
+            nivelOroMejoraMenosRechargeText.text = "(Max)";
+        }
+        else
+        {
+            nivelOroMejoraMenosRechargeText.text = "(" + nivelMejoraMenosRecharge.ToString("F0") + ")";
+        }
+        if (nivelMejoraMasSpeed >= 15)
+        {
+            nivelOroMejorMasSpeedText.text = "(Max)";
+        }
+        else
+        {
+            nivelOroMejorMasSpeedText.text = "(" + nivelMejoraMasSpeed.ToString("F0") + ")";
+        }
         Invoke(nameof(Verif), 0.2f);
         PlayerPrefs.SetString("CosteOroMejoraMenosRecharge", costeOroMejoraMenosRecharge.ToString());
         PlayerPrefs.SetInt("NivelMejoraMenosRecharge", nivelMejoraMenosRecharge);
@@ -81,11 +103,14 @@ public class MejorasSuction : MonoBehaviour
     }
     public void MejoraMenosRecharge()
     {
-        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMenosRecharge && nivelMejoraMenosRecharge < 30)
-        {
+        AudioManager.instance.PlaySFX("Click");
 
+        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMenosRecharge && nivelMejoraMenosRecharge < 15)
+        {
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(4.01f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMenosRecharge;
-            GetComponent<Recursos>().timeRecharge /= 1.1f;
+            GetComponent<Recursos>().timeRecharge /= 1.2f;
             costeOroMejoraMenosRecharge *= 2f;
             nivelMejoraMenosRecharge += 1;
          
@@ -93,24 +118,28 @@ public class MejorasSuction : MonoBehaviour
     }
     public void MejoraMasSpeed()
     {
-        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasSpeed && nivelMejoraMenosRecharge < 25)
+        AudioManager.instance.PlaySFX("Click");
+        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasSpeed && nivelMejoraMasSpeed < 15)
         {
-
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(4.01f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasSpeed;
-            GetComponent<Recursos>().timeSuccion /= 1.1f;
+            GetComponent<Recursos>().timeSuccion /= 1.2f;
             costeOroMejoraMasSpeed *= 2f;
-            nivelMejoraMenosRecharge += 1;
+            nivelMejoraMasSpeed += 1;
 
         }
     }
     public void MejoraMasSuccion()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasSuccionados)
         {
-
+            AudioManager.instance.PlaySFX("Mejora");
+            ObjectPool.SpawnObject(particulasMejora, new Vector3(4.01f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasSuccionados;
             GetComponent<Recursos>().cantidadASuccionar += 1;
-            costeOroMejoraMasSuccionados *= 3f;
+            costeOroMejoraMasSuccionados *= 2f;
             nivelMejoraMasSuccionados += 1;
 
         }

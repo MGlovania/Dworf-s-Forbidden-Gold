@@ -21,6 +21,8 @@ public class CamionDeCargo : MonoBehaviour
     public GameObject manager;
     public GameObject recuadroTutorial;
     public GameObject recuadroTutorial2;
+
+    public int puntoSfxTruck;
     void Start()
     {
         cantidad = 0;
@@ -29,7 +31,7 @@ public class CamionDeCargo : MonoBehaviour
         speed = PlayerPrefs.GetFloat("SpeedTruck");
         if (speed <= 0)
         {
-            speed = 1.3f;
+            speed = 1.45f;
         }
         Invoke(nameof(Verif), 0.25f);
     }
@@ -47,6 +49,8 @@ public class CamionDeCargo : MonoBehaviour
             GetComponent<Animator>().SetBool("Deposito", true);
             volverAMina = 1;
             collectorsQuitar = 1;
+           
+           
         }
         if (cantidad >= cantidadMax && colisionConDesposito <= 0)
         {
@@ -56,6 +60,26 @@ public class CamionDeCargo : MonoBehaviour
                 volverAMina = 0;
                 GetComponent<Animator>().SetBool("Deposito", true);           
       
+        }
+        if (volverADeposito >= 1 && puntoSfxTruck <= 0)
+        {
+            puntoSfxTruck = 1;
+            Invoke(nameof(Sonido), 0.15f);
+        }
+        if (cantidad <= 0 && volverAMina >= 1)
+        {
+            Invoke(nameof(Sonido), 0.15f);
+        }
+    }
+    void Sonido()
+    {
+        if (volverADeposito >= 1)
+        {
+            if (manager.GetComponent<Recursos>().puntoColliderSonidoZafiroYTal >= 1)
+            {
+                AudioManager.instance.PlaySFX("TruckSfx");
+            }
+            Invoke(nameof(Sonido), 0.15f);
         }
     }
    
@@ -94,6 +118,7 @@ public class CamionDeCargo : MonoBehaviour
     {
         if (collision.CompareTag("Deposito"))
         {
+            puntoSfxTruck = 0;
             collectorsQuitar = 0;
             GetComponent<Animator>().SetBool("Deposito", false);
             volverADeposito = 0;
@@ -110,6 +135,7 @@ public class CamionDeCargo : MonoBehaviour
         }
         if (collision.CompareTag("PosicionTruck"))
         {
+            manager.GetComponent<Deposito>().cantidadAMandarCollectos = 0;
             manager.GetComponent<Recursos>().permitirSuccion = 1;
             GetComponent<Animator>().SetBool("Deposito", false);
             volverAMina = 0;

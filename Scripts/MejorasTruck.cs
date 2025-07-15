@@ -9,6 +9,9 @@ public class MejorasTruck : MonoBehaviour
     public TMP_Text costeOroMejoraMasCapacidadText;
     public TMP_Text costeOroMejoraMasVelocidadText;
 
+    public TMP_Text nivelOroMejoraMasCapacidadText;
+    public TMP_Text nivelOroMejoraMasVelocidadText;
+
     public double costeOroMejoraMasCapacidad;
     public int nivelMejoraMasCapacidad;
 
@@ -22,12 +25,22 @@ public class MejorasTruck : MonoBehaviour
     {
         costeOroMejoraMasCapacidad = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasCapacidad", "5"));
         nivelMejoraMasCapacidad = PlayerPrefs.GetInt("NivelMejoraMasCapacidad");
-        costeOroMejoraMasVelocidad = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasVelocidad", "5"));
+        costeOroMejoraMasVelocidad = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasVelocidad", "10"));
         nivelMejoraMasVelocidad = PlayerPrefs.GetInt("NivelMejoraMasVelocidad");
         Invoke(nameof(Verif), 0.2f);
     }
     void Verif()
     {
+        nivelOroMejoraMasCapacidadText.text = "(" + nivelMejoraMasCapacidad.ToString("F0") + ")";
+        if (nivelMejoraMasVelocidad >= 15)
+        {
+            nivelOroMejoraMasVelocidadText.text = "(Max)";
+        }
+        else
+        {
+            nivelOroMejoraMasVelocidadText.text = "(" + nivelMejoraMasVelocidad.ToString("F0") + ")";
+        }
+
         Invoke(nameof(Verif), 0.2f);
         PlayerPrefs.SetString("CosteOroMejoraMasCapacidad", costeOroMejoraMasCapacidad.ToString());
         PlayerPrefs.SetInt("NivelMejoraMasCapacidad", nivelMejoraMasCapacidad);
@@ -60,8 +73,11 @@ public class MejorasTruck : MonoBehaviour
     }
     public void MejoraMasCapacidad()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasCapacidad)
         {
+            ObjectPool.SpawnObject(particulasMejora, truck.transform.position, Quaternion.identity);
+            AudioManager.instance.PlaySFX("Mejora");
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasCapacidad;
             GetComponent<Recursos>().cargoMaxCamion *= 1.5f;
             costeOroMejoraMasCapacidad *= 2f;
@@ -70,22 +86,66 @@ public class MejorasTruck : MonoBehaviour
     }
     public void MejoraMasVelocidad()
     {
-        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasVelocidad && nivelMejoraMasVelocidad < 20)
+        AudioManager.instance.PlaySFX("Click");
+        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasVelocidad && nivelMejoraMasVelocidad < 15)
         {
+            ObjectPool.SpawnObject(particulasMejora, truck.transform.position, Quaternion.identity);
+            AudioManager.instance.PlaySFX("Mejora");
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasVelocidad;
-            truck.GetComponent<CamionDeCargo>().speed *= 1.1f;
+            truck.GetComponent<CamionDeCargo>().speed *= 1.2f;
             if (nivelMejoraMasVelocidad >= 10)
             {
                 costeOroMejoraMasVelocidad *= 5f;
             }
             else
             {
-                costeOroMejoraMasVelocidad *= 2.5f;
+                costeOroMejoraMasVelocidad *= 2.25f;
             }
         
             nivelMejoraMasVelocidad += 1;
         }
     }
+    public void MejoraProbBounce()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasVelocidad && nivelMejoraMasVelocidad < 6)
+        {
+            ObjectPool.SpawnObject(particulasMejora, truck.transform.position, Quaternion.identity);
+            AudioManager.instance.PlaySFX("Mejora");
+            GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasVelocidad;
+            if (nivelMejoraMasVelocidad >= 4)
+            {
+                costeOroMejoraMasVelocidad *= 3.5f;
+            }
+            else
+            {
+                costeOroMejoraMasVelocidad *= 2.2f;
+            }
 
-   
+            nivelMejoraMasVelocidad += 1;
+        }
+    }
+    public void MejoraMasValor()
+    {
+        AudioManager.instance.PlaySFX("Click");
+        if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasVelocidad)
+        {
+            ObjectPool.SpawnObject(particulasMejora, truck.transform.position, Quaternion.identity);
+            AudioManager.instance.PlaySFX("Mejora");
+            GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasVelocidad;
+            GetComponent<Recursos>().valorPiedra *= 1.5f;
+            if (nivelMejoraMasVelocidad >= 7)
+            {
+                costeOroMejoraMasVelocidad *= 3.5f;
+            }
+            else
+            {
+                costeOroMejoraMasVelocidad *= 2.25f;
+            }
+
+            nivelMejoraMasVelocidad += 1;
+        }
+    }
+
+
 }

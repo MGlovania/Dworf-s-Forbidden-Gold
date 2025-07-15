@@ -18,20 +18,85 @@ public class Aldeano : MonoBehaviour
 
     public GameObject player;
     public GameObject particulasQuitar;
+
+    public GameObject burbuja;
+
     void OnEnable()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         manager = GameObject.FindGameObjectWithTag("Manager");
-  
+
         moverIzquierda = 0;
         moverDerecha = 0;
         rb = gameObject.GetComponent<Rigidbody2D>();
         Invoke(nameof(MoverAleatorio), Random.Range(1f, 5f));
         Invoke(nameof(VerifFe), 3f);
         Invoke(nameof(VerifFlores), 3.5f);
-  
+
         puntoMorir = 0;
         Invoke(nameof(VerifPrestigio), 1f);
+        Invoke(nameof(Burbujear), Random.Range(30, 90));
+    }
+    void Burbujear()
+    {
+        Invoke(nameof(Burbujear), Random.Range(30, 90));
+        GameObject obj = ObjectPool.SpawnObject(burbuja, transform.position, Quaternion.identity);
+        obj.GetComponent<Burbujas>().target = transform.gameObject;
+        obj.GetComponent<ReturnObj>().time = 3.5f;
+        range = Random.Range(0, 131);
+        if (range == 0)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaJuan;
+        }
+        else if (range >= 1 && range <= 10)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaHamburguesa;
+        }
+        else if (range >= 11 && range <= 20)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaDudando;
+        }
+        else if (range >= 21 && range <= 30)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaFeliz;
+        }
+        else if (range >= 31 && range <= 40)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaFlor;
+        }
+        else if (range >= 41 && range <= 50)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaMoneda;
+        }
+        else if (range >= 51 && range <= 60)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaPizza;
+        }
+        else if (range >= 61 && range <= 70)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaSeria;
+        }
+        else if (range >= 71 && range <= 80)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaSonrojado;
+        }
+        else if (range >= 81 && range <= 90)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaSorprendido;
+        }
+        else if (range >= 100 && range <= 110)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaSp;
+        }
+        else if (range >= 111 && range <= 120)
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaTazaCafe;
+        }
+        else
+        {
+            obj.GetComponent<SpriteRenderer>().sprite = obj.GetComponent<Burbujas>().burbujaFe;
+        }
+
     }
     void VerifPrestigio()
     {
@@ -54,6 +119,7 @@ public class Aldeano : MonoBehaviour
             GameObject popUp = ObjectPool.SpawnObject(popUpFe, transform.position + Vector3.up / 4 + Vector3.right / 9, Quaternion.identity);
             popUp.GetComponentInChildren<TMP_Text>().text = "+" + manager.GetComponent<Recursos>().valorDworfsFe.ToString("F0");
             manager.GetComponent<Recursos>().cantidadFe += manager.GetComponent<Recursos>().valorDworfsFe;
+            manager.GetComponent<Recursos>().totalFe += manager.GetComponent<Recursos>().valorDworfsFe;
         }
     }
     void VerifFlores()

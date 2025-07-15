@@ -7,15 +7,28 @@ public class MejorasCasa : MonoBehaviour
     public TMP_Text costeOroMejoraMasCapacidadCasa1Text;
     public TMP_Text costeOroMejoraConvertirEnObeliscoCasa1Text;
 
+    public TMP_Text nivelOroMejoraMasCapacidadCasa1Text;
+    public TMP_Text nivelOroMejoraConvertirEnObeliscoCasa1Text;
+
     public TMP_Text costeOroMejoraMasCapacidadCasa2Text;
     public TMP_Text costeOroMejoraConvertirEnObeliscoCasa2Text;
+
+    public TMP_Text nivelOroMejoraMasCapacidadCasa2Text;
+    public TMP_Text nivelOroMejoraConvertirEnObeliscoCasa2Text;
 
     public TMP_Text costeOroMejoraMasCapacidadCasa3Text;
     public TMP_Text costeOroMejoraConvertirEnObeliscoCasa3Text;
 
+    public TMP_Text nivelOroMejoraMasCapacidadCasa3Text;
+    public TMP_Text nivelOroMejoraConvertirEnObeliscoCasa3Text;
+
     public TMP_Text costeOroMejoraObelisco1DañoText;
     public TMP_Text costeOroMejoraObelisco2DañoText;
     public TMP_Text costeOroMejoraObelisco3DañoText;
+
+    public TMP_Text nivelOroMejoraObelisco1DañoText;
+    public TMP_Text nivelOroMejoraObelisco2DañoText;
+    public TMP_Text nivelOroMejoraObelisco3DañoText;
 
 
     public double costeOroMejoraMasCapacidadCasa1;
@@ -89,28 +102,29 @@ public class MejorasCasa : MonoBehaviour
 
   
     public GameObject particulasMejora;
+    public GameObject prestigio;
     void Start()
     {
         costeOroMejoraMasCapacidadCasa1 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasCapacidadCasa1", "10"));
         nivelMejoraMasCapacidadCasa1 = PlayerPrefs.GetInt("NivelMejoraMasCapacidadCasa1");
         costeOroMejoraConvertirEnObeliscoCasa1 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraConvertirEnObeliscoCasa1", "500"));
         nivelMejoraConvertirEnObeliscoCasa1 = PlayerPrefs.GetInt("NivelMejoraConvertirEnObeliscoCasa1");
-        costeOroMejoraMasCapacidadCasa2 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasCapacidadCasa2", "750"));
+        costeOroMejoraMasCapacidadCasa2 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasCapacidadCasa2", "150"));
         nivelMejoraMasCapacidadCasa2 = PlayerPrefs.GetInt("NivelMejoraMasCapacidadCasa2");
-        costeOroMejoraConvertirEnObeliscoCasa2 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraConvertirEnObeliscoCasa2", "35000"));
+        costeOroMejoraConvertirEnObeliscoCasa2 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraConvertirEnObeliscoCasa2", "15000"));
         nivelMejoraConvertirEnObeliscoCasa2 = PlayerPrefs.GetInt("NivelMejoraConvertirEnObeliscoCasa2");
-        costeOroMejoraMasCapacidadCasa3 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasCapacidadCasa3", "6000"));
+        costeOroMejoraMasCapacidadCasa3 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraMasCapacidadCasa3", "1500"));
         nivelMejoraMasCapacidadCasa3 = PlayerPrefs.GetInt("NivelMejoraMasCapacidadCasa3");
-        costeOroMejoraConvertirEnObeliscoCasa3 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraConvertirEnObeliscoCasa3", "300000"));
+        costeOroMejoraConvertirEnObeliscoCasa3 = double.Parse(PlayerPrefs.GetString("CosteOroMejoraConvertirEnObeliscoCasa3", "65000"));
         nivelMejoraConvertirEnObeliscoCasa3 = PlayerPrefs.GetInt("NivelMejoraConvertirEnObeliscoCasa3");
 
         costeOroMejoraObelisco1Daño = double.Parse(PlayerPrefs.GetString("CosteOroMejoraObelisco1Daño", "750"));
         nivelMejoraObelisco1Daño = PlayerPrefs.GetInt("NivelMejoraObelisco1Daño");
 
-        costeOroMejoraObelisco2Daño = double.Parse(PlayerPrefs.GetString("CosteOroMejoraObelisco2Daño", "50000"));
+        costeOroMejoraObelisco2Daño = double.Parse(PlayerPrefs.GetString("CosteOroMejoraObelisco2Daño", "20000"));
         nivelMejoraObelisco2Daño = PlayerPrefs.GetInt("NivelMejoraObelisco2Daño");
 
-        costeOroMejoraObelisco3Daño = double.Parse(PlayerPrefs.GetString("CosteOroMejoraObelisco3Daño", "400000"));
+        costeOroMejoraObelisco3Daño = double.Parse(PlayerPrefs.GetString("CosteOroMejoraObelisco3Daño", "85000"));
         nivelMejoraObelisco3Daño = PlayerPrefs.GetInt("NivelMejoraObelisco3Daño");
 
      
@@ -244,6 +258,16 @@ public class MejorasCasa : MonoBehaviour
     }
     void Verif()
     {
+        nivelOroMejoraMasCapacidadCasa1Text.text = "(" + nivelMejoraMasCapacidadCasa1.ToString("F0") + ")";
+        nivelOroMejoraConvertirEnObeliscoCasa1Text.text = "(" + nivelMejoraConvertirEnObeliscoCasa1.ToString("F0") + ")";
+        nivelOroMejoraMasCapacidadCasa2Text.text = "(" + nivelMejoraMasCapacidadCasa2.ToString("F0") + ")";
+        nivelOroMejoraConvertirEnObeliscoCasa2Text.text = "(" + nivelMejoraConvertirEnObeliscoCasa2.ToString("F0") + ")";
+        nivelOroMejoraMasCapacidadCasa3Text.text = "(" + nivelMejoraMasCapacidadCasa3.ToString("F0") + ")";
+        nivelOroMejoraConvertirEnObeliscoCasa3Text.text = "(" + nivelMejoraConvertirEnObeliscoCasa3.ToString("F0") + ")";
+        nivelOroMejoraObelisco1DañoText.text = "(" + nivelMejoraObelisco1Daño.ToString("F0") + ")";
+        nivelOroMejoraObelisco2DañoText.text = "(" + nivelMejoraObelisco2Daño.ToString("F0") + ")";
+        nivelOroMejoraObelisco3DañoText.text = "(" + nivelMejoraObelisco3Daño.ToString("F0") + ")";
+
         Invoke(nameof(Verif), 0.2f);
         PlayerPrefs.SetString("CosteOroMejoraMasCapacidadCasa1", costeOroMejoraMasCapacidadCasa1.ToString());
         PlayerPrefs.SetInt("NivelMejoraMasCapacidadCasa1", nivelMejoraMasCapacidadCasa1);
@@ -381,13 +405,32 @@ public class MejorasCasa : MonoBehaviour
     {
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasCapacidadCasa1 && nivelMejoraMasCapacidadCasa1 < 8)
         {
+            AudioManager.instance.PlaySFX("Mejora");
             ObjectPool.SpawnObject(particulasMejora, new Vector3(-8.20f, -3, 0), Quaternion.identity);
-            GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasCapacidadCasa1;
-            GetComponent<Recursos>().cantidadDworfsSinEmpleo += 2;
+            GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasCapacidadCasa1;         
             costeOroMejoraMasCapacidadCasa1 *= 2.5f;
             nivelMejoraMasCapacidadCasa1 += 1;
-            ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3,0), Quaternion.identity);
-            ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+            if (GetComponent<Recursos>().cantidadDworfsSinEmpleo <= 98)
+            {
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                GetComponent<Recursos>().cantidadDworfsSinEmpleo += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+            }
+            else
+            {
+                GetComponent<Recursos>().cantidadDworfsSinEmpleoAlmacenados += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+            }
+          
             if (nivelMejoraMasCapacidadCasa1 >= 1)
             {
                 casa1lvl2.SetActive(true);
@@ -426,6 +469,7 @@ public class MejorasCasa : MonoBehaviour
     {
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraConvertirEnObeliscoCasa1 && nivelMejoraMasCapacidadCasa1 < 1)
         {
+            AudioManager.instance.PlaySFX("Mejora");
             ObjectPool.SpawnObject(particulasMejora, new Vector3(-8.20f, -3, 0), Quaternion.identity);
             casa1.GetComponent<SpriteRenderer>().sprite = obelisco;
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraConvertirEnObeliscoCasa1;
@@ -439,13 +483,31 @@ public class MejorasCasa : MonoBehaviour
     {
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasCapacidadCasa2 && nivelMejoraMasCapacidadCasa2 < 8)
         {
+            AudioManager.instance.PlaySFX("Mejora");
             ObjectPool.SpawnObject(particulasMejora, new Vector3(-8.20f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasCapacidadCasa2;
-            GetComponent<Recursos>().cantidadDworfsSinEmpleo += 2;
             costeOroMejoraMasCapacidadCasa2 *= 3f;
             nivelMejoraMasCapacidadCasa2 += 1;
-            ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
-            ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+            if (GetComponent<Recursos>().cantidadDworfsSinEmpleo <= 98)
+            {
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                GetComponent<Recursos>().cantidadDworfsSinEmpleo += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+            }
+            else
+            {
+                GetComponent<Recursos>().cantidadDworfsSinEmpleoAlmacenados += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+            }
             if (nivelMejoraMasCapacidadCasa2 >= 1)
             {
                 casa2lvl2.SetActive(true);
@@ -484,6 +546,7 @@ public class MejorasCasa : MonoBehaviour
     {
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraConvertirEnObeliscoCasa2 && nivelMejoraMasCapacidadCasa2 < 1)
         {
+            AudioManager.instance.PlaySFX("Mejora");
             ObjectPool.SpawnObject(particulasMejora, new Vector3(-8.20f, -3, 0), Quaternion.identity);
             casa1.GetComponent<SpriteRenderer>().sprite = obelisco;
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraConvertirEnObeliscoCasa2;
@@ -497,13 +560,31 @@ public class MejorasCasa : MonoBehaviour
     {
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraMasCapacidadCasa3 && nivelMejoraMasCapacidadCasa3 < 8)
         {
+            AudioManager.instance.PlaySFX("Mejora");
             ObjectPool.SpawnObject(particulasMejora, new Vector3(-8.20f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraMasCapacidadCasa3;
-            GetComponent<Recursos>().cantidadDworfsSinEmpleo += 2;
             costeOroMejoraMasCapacidadCasa3 *= 3.5f;
             nivelMejoraMasCapacidadCasa3 += 1;
-            ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
-            ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+            if (GetComponent<Recursos>().cantidadDworfsSinEmpleo <= 98)
+            {
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                ObjectPool.SpawnObject(prefabAldeano, new Vector3(-8.2f, -3, 0), Quaternion.identity);
+                GetComponent<Recursos>().cantidadDworfsSinEmpleo += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+            }
+            else
+            {
+                GetComponent<Recursos>().cantidadDworfsSinEmpleoAlmacenados += 2;
+                if (prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasValor >= 1)
+                {
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                    GetComponent<Recursos>().dañoClick *= (1 + 0.2f * prestigio.GetComponent<MejorasPrestigio>().nivelMejoraMasDañoClick);
+                }
+            }
             if (nivelMejoraMasCapacidadCasa3 >= 1)
             {
                 casa3lvl2.SetActive(true);
@@ -540,8 +621,10 @@ public class MejorasCasa : MonoBehaviour
     }
     public void MejoraConvertirEnObelisco3()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraConvertirEnObeliscoCasa3 && nivelMejoraMasCapacidadCasa3 < 1)
         {
+            AudioManager.instance.PlaySFX("Mejora");
             ObjectPool.SpawnObject(particulasMejora, new Vector3(-8.20f, -3, 0), Quaternion.identity);
             casa1.GetComponent<SpriteRenderer>().sprite = obelisco;
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraConvertirEnObeliscoCasa3;
@@ -553,33 +636,42 @@ public class MejorasCasa : MonoBehaviour
     }
     public void MejoraObeliscoDaño1()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraObelisco1Daño)
         {
+            AudioManager.instance.PlaySFX("Mejora");
             ObjectPool.SpawnObject(particulasMejora, new Vector3(-8.20f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraObelisco1Daño;
             GetComponent<Recursos>().dañoDworfsMineros *= 1.25f;
+            GetComponent<Recursos>().dañoDrills *= 1.25f;
             costeOroMejoraObelisco1Daño *= 3f;
             nivelMejoraObelisco1Daño += 1;
         }
     }
     public void MejoraObeliscoDaño2()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraObelisco2Daño)
         {
+            AudioManager.instance.PlaySFX("Mejora");
             ObjectPool.SpawnObject(particulasMejora, new Vector3(-8.20f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraObelisco2Daño;
             GetComponent<Recursos>().dañoDworfsMineros *= 1.25f;
+            GetComponent<Recursos>().dañoDrills *= 1.25f;
             costeOroMejoraObelisco2Daño *= 3.5f;
             nivelMejoraObelisco2Daño += 1;
         }
     }
     public void MejoraObeliscoDaño3()
     {
+        AudioManager.instance.PlaySFX("Click");
         if (GetComponent<Recursos>().cantidadOro >= costeOroMejoraObelisco3Daño)
         {
+            AudioManager.instance.PlaySFX("Mejora");
             ObjectPool.SpawnObject(particulasMejora, new Vector3(-8.20f, -3, 0), Quaternion.identity);
             GetComponent<Recursos>().cantidadOro -= costeOroMejoraObelisco3Daño;
             GetComponent<Recursos>().dañoDworfsMineros *= 1.25f;
+            GetComponent<Recursos>().dañoDrills *= 1.25f;
             costeOroMejoraObelisco3Daño *= 4;
             nivelMejoraObelisco3Daño += 1;
         }

@@ -283,6 +283,10 @@ public class Pepita : MonoBehaviour
       
         if (collision.CompareTag("Suelo"))
         {
+            if (manager.GetComponent<Recursos>().puntoColliderSonidoPiedra >= 1)
+            {
+                AudioManager.instance.PlaySFX("PlopPepita");
+            }
             esBase = true;
             if (!pepitaColisionConSuelo)
             {
@@ -300,6 +304,10 @@ public class Pepita : MonoBehaviour
         }
         if (collision.CompareTag("Pepita") && !esBase && puntoMorir <= 0)
         {
+            if (manager.GetComponent<Recursos>().puntoColliderSonidoPiedra >= 1)
+            {
+                AudioManager.instance.PlaySFX("PlopPepita");
+            }
             if (collision.GetComponent<Pepita>().esBase && collision.GetComponent<Pepita>().cantidadStack < 30)
             {
                 puntoMorir = 2;

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Hover2 : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject image;
+    public GameObject imagenHover2;
     public GameObject image2;
     public int range;
     public bool esCementerio;
@@ -27,7 +28,10 @@ public class Hover2 : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-          
+            if (imagenHover2 != null)
+            {
+                imagenHover2.SetActive(true);
+            }
             image.SetActive(true);
         }
   
@@ -37,7 +41,10 @@ public class Hover2 : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-       
+        if (imagenHover2 != null)
+        {
+            imagenHover2.SetActive(false);
+        }
         image.SetActive(false);
         if (esCementerio)
         {
